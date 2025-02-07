@@ -1,0 +1,100 @@
+<!-- ADDRESS -->
+<div class="address">
+  <div class="row">
+    <div class="col-lg-12">
+      <!-- ADDRESS HEADING -->
+      <div class="address-heading">
+        <div class="heading-label mt-2"><span>{{USER_PROFILE_CONSTANTS.ADDRESS_HEADING |
+            titlecase}}</span>
+        </div>
+      </div>
+      <!-- ADDRESS HEADING -->
+    </div>
+  </div>
+
+  <form [formGroup]="form">
+    <div class="row">
+      <!-- TYPE -->
+      <div class="col-lg-12 mt-4">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>{{USER_PROFILE_CONSTANTS.TYPE_LABEL| titlecase}}</mat-label>
+          <mat-select [formControlName]="ADDRESS_FORMS_KEYS.TYPE" id="type">
+            <mat-option *ngFor="let type of FROMS_OPTIONS.TYPE" value="{{type.value}}">{{type.value}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- TYPE -->
+
+      <!-- COUNTRY -->
+      <div class="col-lg-12 mt-2">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>{{USER_PROFILE_CONSTANTS.G_COUNTRY_LABEL| titlecase}}</mat-label>
+          <mat-select [formControlName]="ADDRESS_FORMS_KEYS.COUNTRY" id="country">
+            <mat-option *ngFor="let gender of FROMS_OPTIONS.GENDER"
+              value="{{gender.value}}">{{gender.value}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- COUNTRY -->
+
+      <!-- STATE -->
+      <div class="col-lg-12 mt-2">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>{{USER_PROFILE_CONSTANTS.G_STATE_LABEL| titlecase}}</mat-label>
+          <mat-select [formControlName]="ADDRESS_FORMS_KEYS.STATE" id="state">
+            <mat-option *ngFor="let gender of FROMS_OPTIONS.GENDER"
+              value="{{gender.value}}">{{gender.value}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- STATE -->
+
+      <!-- CITY -->
+      <div class="col-lg-12 mt-2">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>{{USER_PROFILE_CONSTANTS.G_CITY_LABEL| titlecase}}</mat-label>
+          <mat-select [formControlName]="ADDRESS_FORMS_KEYS.CITY" id="city">
+            <mat-option *ngFor="let gender of FROMS_OPTIONS.GENDER"
+              value="{{gender.value}}">{{gender.value}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <!-- CITY -->
+
+      <!-- DOOR NO & STREET -->
+      <div class="col-lg-12 mt-4">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>{{USER_PROFILE_CONSTANTS.DOOR_NO_AND_STREET_LABEL| titlecase}}</mat-label>
+          <input matInput [formControlName]="ADDRESS_FORMS_KEYS.DOOR_NO_AND_STREET"
+            [placeholder]="APP_CONSTANTS.G_ENTER_PLACEHOLDER" id="doorNoAndStreet">
+        </mat-form-field>
+      </div>
+      <!-- DOOR NO & STREET -->
+
+      <!-- PINCODE -->
+      <div class="col-lg-12 mt-4">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>{{USER_PROFILE_CONSTANTS.PINCODE_LABEL| titlecase}}</mat-label>
+          <input matInput [formControlName]="ADDRESS_FORMS_KEYS.PINCODE"
+            [placeholder]="APP_CONSTANTS.G_ENTER_PLACEHOLDER" id="pincode">
+        </mat-form-field>
+      </div>
+      <!-- PINCODE -->
+
+      <!-- ADD ADDRESS -->
+      <div class="col-lg-12">
+        <button mat-button color="warn" type="button" (click)="addNewAddress()"><mat-icon>add</mat-icon>
+          Address</button>
+      </div>
+      <!-- ADD ADDRESS -->
+
+      <!-- ADDRESS LIST -->
+      <app-address-list [addressList]="addressList"></app-address-list>
+      <!-- ADDRESS LIST -->
+
+    </div>
+  </form>
+
+
+</div>
+<!-- ADDRESS -->

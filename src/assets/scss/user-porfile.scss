@@ -1,0 +1,82 @@
+@import './variables.scss';
+
+.create-profile {
+  .create-profile-heading {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: $light-gray;
+    padding: 15px 5px;
+
+    .heading-icon {
+      margin-right: 0.5rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .heading-label {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: $black;
+    }
+  }
+
+  .demographic-details, .education-details, .experience-details {
+    border-left: 2px solid $light-gray;
+    border-right: 2px solid $light-gray;
+    border-bottom: 2px solid $light-gray;
+    padding: 10px 20px;
+  }
+
+  .address {
+    border-left: 2px solid $light-gray;
+    border-right: 2px solid $light-gray;
+    padding: 10px 20px;
+  }
+
+  .demographic-details-heading, .education-details-heading, .experience-details-heading, .address-heading {
+    .heading-label {
+      font-size: 16px;
+      font-weight: bold;
+      color: $black;
+    }
+  }
+
+  .demographic-details {
+    .example-full-width {
+      width: 100%;
+    }
+  }
+  
+  .education-details, .experience-details, .address {
+    .example-full-width{
+      width: 30%;
+    }
+  }
+
+  .education-details-list, .experience-details-list, .address-list {
+    border: 2px solid $light-gray;
+    padding: 10px;
+  }
+
+  /****Button Styles****/
+  .buttons{
+    display: flex;
+    justify-content: end;
+    border-left: 2px solid $light-gray;
+    border-right: 2px solid $light-gray;
+    border-bottom: 2px solid $light-gray;
+    padding: 0 15px 15px 0;
+
+    .cancle-button {
+      margin-left: 10px;
+    }
+  }
+}
+
+
+
+  

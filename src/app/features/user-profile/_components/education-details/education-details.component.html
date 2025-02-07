@@ -1,0 +1,92 @@
+<!-- EDUCATION DETAILS -->
+<div class="education-details">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- EDUCATION DETAILS HEADING -->
+      <div class="education-details-heading">
+        <div class="heading-label mt-2"><span>{{USER_PROFILE_CONSTANTS.EDUCATION_DETAILS_HEADING |
+            titlecase}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- EDUCATION DETAILS HEADING -->
+
+  <form [formGroup]="form">
+    <div class="row">
+      <ng-container>
+        <div>
+
+          <!-- CREDENTIAL -->
+          <div class="col-lg-12 mt-4">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>{{USER_PROFILE_CONSTANTS.CREDENTIAL_LABEL| titlecase}}</mat-label>
+              <mat-select [formControlName]="EDUCATION_DETAILS_FORMS_KEYS.CREDENTIAL" id="credential">
+                <mat-option *ngFor="let credential of FROMS_OPTIONS.CREDENTIAL"
+                  value="{{credential.value}}">{{credential.value}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <!-- CREDENTIAL -->
+
+          <!-- DEGREE/CERTIFICATE -->
+          <div class="col-lg-12 mt-4">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>{{USER_PROFILE_CONSTANTS.DEGREE_CERTIFICATE_LABEL| titlecase}}</mat-label>
+              <input matInput [formControlName]="EDUCATION_DETAILS_FORMS_KEYS.DEGREE_CERTIFICATE"
+                [placeholder]="APP_CONSTANTS.G_ENTER_PLACEHOLDER" id="degreeCertificate">
+            </mat-form-field>
+          </div>
+          <!-- DEGREE/CERTIFICATE -->
+
+          <!-- INSTITUTION -->
+          <div class="col-lg-12 mt-4">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>{{USER_PROFILE_CONSTANTS.INSTITUTION_LABEL| titlecase}}</mat-label>
+              <input matInput [formControlName]="EDUCATION_DETAILS_FORMS_KEYS.INSTITUTION"
+                [placeholder]="APP_CONSTANTS.G_ENTER_PLACEHOLDER" id="institution">
+            </mat-form-field>
+          </div>
+          <!-- INSTITUTION -->
+
+          <!-- CITY -->
+          <div class="col-lg-12 mt-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>{{USER_PROFILE_CONSTANTS.G_CITY_LABEL| titlecase}}</mat-label>
+              <mat-select [formControlName]="EDUCATION_DETAILS_FORMS_KEYS.CITY" id="city">
+                <mat-option *ngFor="let city of FROMS_OPTIONS.GENDER" value="{{city.value}}">{{city.value}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <!-- CITY -->
+
+          <!-- STATE -->
+          <div class="col-lg-12 mt-2">
+            <mat-form-field class="example-full-width" appearance="outline">
+              <mat-label>{{USER_PROFILE_CONSTANTS.G_STATE_LABEL| titlecase}}</mat-label>
+              <mat-select [formControlName]="EDUCATION_DETAILS_FORMS_KEYS.STATE" id="state">
+                <mat-option *ngFor="let state of FROMS_OPTIONS.GENDER"
+                  value="{{state.value}}">{{state.value}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <!-- STATE -->
+        </div>
+      </ng-container>
+
+      <!-- ADD EDUCATION DETAILS -->
+      <div class="col-lg-12 mb-2">
+        <button mat-button color="warn" type="button" (click)="addNewEducationDetails()"><mat-icon>add</mat-icon>
+          Education Details</button>
+      </div>
+      <!-- ADD EDUCATION DETAILS -->
+    </div>
+  </form>
+
+  <!-- EDUCATION DETAILS LIST -->
+  <app-education-details-list [educationDetailsList]="educationDetailsList"></app-education-details-list>
+  <!-- EDUCATION DETAILS LIST -->
+
+
+</div>
+<!-- EDUCATION DETAILS -->

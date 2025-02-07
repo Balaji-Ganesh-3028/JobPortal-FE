@@ -1,0 +1,7 @@
+/* You can add global styles to this file, and also import other style files */
+@import './assets/scss/user-porfile.scss';
+@import './assets/scss/variables.scss';
+@import './assets/scss/material.scss';
+
+html, body { height: 100%; font-family: $global-font-family !important; }
+body { margin: 0; padding: 0; }

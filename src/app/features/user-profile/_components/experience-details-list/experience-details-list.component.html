@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="table-responsive experience-details-list">
+      <table class="table table-striped">
+        <thead>
+          <th scope="col">{{USER_PROFILE_CONSTANTS.EMPLOYER_LABEL| titlecase}}</th>
+          <th scope="col">{{USER_PROFILE_CONSTANTS.DOJ_LABEL | titlecase}}</th>
+          <th scope="col">{{USER_PROFILE_CONSTANTS.ROLE_LABEL | titlecase}}</th>
+          <th scope="col">{{USER_PROFILE_CONSTANTS.DURATION_IN_MONTHS_LABEL | titlecase}}</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let experienceDetails of experienceDetailsList">
+            <td>{{experienceDetails.employer}}</td>
+            <td>{{experienceDetails.doj}}</td>
+            <td>{{experienceDetails.role}}</td>
+            <td>{{experienceDetails.durationInMonths}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-md-12">
+    <div class="table-responsive address-list">
+      <table class="table table-striped">
+        <thead>
+          <th scope="col">{{USER_PROFILE_CONSTANTS.TYPE_LABEL| titlecase}}</th>
+          <th scope="col">{{USER_PROFILE_CONSTANTS.G_COUNTRY_LABEL | titlecase}}</th>
+          <th scope="col">{{USER_PROFILE_CONSTANTS.G_STATE_LABEL | titlecase}}</th>
+          <th scope="col">{{USER_PROFILE_CONSTANTS.G_CITY_LABEL | titlecase}}</th>
+          <th scope="col">{{USER_PROFILE_CONSTANTS.DOOR_NO_AND_STREET_LABEL | titlecase}}</th>
+          <th scope="col">{{USER_PROFILE_CONSTANTS.PINCODE_LABEL | titlecase}}</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let address of addressList">
+            <td>{{address.type}}</td>
+            <td>{{address.country}}</td>
+            <td>{{address.state}}</td>
+            <td>{{address.city}}</td>
+            <td>{{address.doorNoStreet}}</td>
+            <td>{{address.pincode}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

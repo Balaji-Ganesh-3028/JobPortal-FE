@@ -1,0 +1,112 @@
+<!-- DEMOGRAPHIC DETAILS -->
+<div class="demographic-details">
+  <div class="row">
+    <div class="col-md-12">
+
+      <!-- DEMOGRAPHIC DETAILS HEADING -->
+      <div class="demographic-details-heading">
+        <div class="heading-label mt-2"><span>{{USER_PROFILE_CONSTANTS.DEMOGRAPHIC_DETAILS_HEADING |
+            titlecase}}</span></div>
+      </div>
+      <!-- DEMOGRAPHIC DETAILS HEADING -->
+
+    </div>
+  </div>
+
+  <!-- DEMOGRAPHIC FORM -->
+  <form [formGroup]="form">
+    <div class="row">
+
+      <!-- SALUTATION -->
+      <div class="col-lg-2 mt-4">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>{{USER_PROFILE_CONSTANTS.SALUTATION_LABEL | titlecase}}</mat-label>
+          <mat-select [formControlName]="DEMOGRAPHIC_DETAILS_FORMS_KEYS.SALUTATION" id="salutation">
+            <mat-option *ngFor="let salutation of FROMS_OPTIONS.SALUTATION"
+              value="{{salutation.value}}">{{salutation.value}}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.SALUTATION)?.hasError('required') && this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.SALUTATION)?.touched">
+            <span [appRequiredField]="USER_PROFILE_CONSTANTS.SALUTATION_LABEL | titlecase"></span>
+          </mat-error>
+        </mat-form-field>
+
+      </div>
+      <!-- SALUTATION -->
+
+      <!-- FIRST NAME -->
+      <div class="col-lg-5 mt-4">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>{{USER_PROFILE_CONSTANTS.FIRST_NAME_LABEL | titlecase}}</mat-label>
+          <input matInput [formControlName]="DEMOGRAPHIC_DETAILS_FORMS_KEYS.FIRSTNAME"
+            [placeholder]="APP_CONSTANTS.G_ENTER_PLACEHOLDER" id="firstName">
+          <mat-error
+            *ngIf="this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.FIRSTNAME)?.hasError('required') && this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.FIRSTNAME)?.touched"
+            [appRequiredField]="USER_PROFILE_CONSTANTS.FIRST_NAME_LABEL | titlecase"></mat-error>
+        </mat-form-field>
+      </div>
+      <!-- FIRST NAME -->
+
+      <!-- LAST NAME -->
+      <div class="col-lg-5 mt-4">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>{{USER_PROFILE_CONSTANTS.LAST_NAME_LABEL | titlecase}}</mat-label>
+          <input matInput [formControlName]="DEMOGRAPHIC_DETAILS_FORMS_KEYS.LASTNAME"
+            [placeholder]="APP_CONSTANTS.G_ENTER_PLACEHOLDER" id="lastName">
+          <mat-error
+            *ngIf="this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.LASTNAME)?.hasError('required') && this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.LASTNAME)?.touched"
+            [appRequiredField]="USER_PROFILE_CONSTANTS.LAST_NAME_LABEL | titlecase"></mat-error>
+        </mat-form-field>
+      </div>
+      <!-- LAST NAME -->
+
+      <!-- GENDER -->
+      <div class="col-lg-2 mt-2">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>{{USER_PROFILE_CONSTANTS.GENDER_LABEL | titlecase}}</mat-label>
+          <mat-select [formControlName]="DEMOGRAPHIC_DETAILS_FORMS_KEYS.GENDER" id="gender">
+            <mat-option *ngFor="let gender of FROMS_OPTIONS.GENDER"
+              value="{{gender.value}}">{{gender.value}}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.GENDER)?.hasError('required') && this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.GENDER)?.touched">
+            <span [appRequiredField]="USER_PROFILE_CONSTANTS.GENDER_LABEL | titlecase"></span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!-- GENDER -->
+
+      <!-- EMAIL -->
+      <div class="col-lg-10 mt-2">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>{{USER_PROFILE_CONSTANTS.EMAIL_LABEL | titlecase}}</mat-label>
+          <input matInput [formControlName]="DEMOGRAPHIC_DETAILS_FORMS_KEYS.EMAIL"
+            [placeholder]="APP_CONSTANTS.G_ENTER_PLACEHOLDER" id="email">
+          <mat-error
+            *ngIf="this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.EMAIL)?.hasError('required') && this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.EMAIL)?.touched"
+            [appRequiredField]="USER_PROFILE_CONSTANTS.EMAIL_LABEL | titlecase"></mat-error>
+        </mat-form-field>
+      </div>
+      <!-- EMAIL -->
+
+      <!-- INTERESTS -->
+      <div class="col-lg-4 mt-2">
+        <mat-form-field class="example-full-width" appearance="outline">
+          <mat-label>{{USER_PROFILE_CONSTANTS.INTERESTS_LABEL | titlecase}}</mat-label>
+          <mat-select multiple [formControlName]="DEMOGRAPHIC_DETAILS_FORMS_KEYS.INTERESTS" id="interests">
+            <mat-option *ngFor="let interest of FROMS_OPTIONS.INTERESTS"
+              [value]="interest.value">{{interest.value}}</mat-option>
+          </mat-select>
+          <mat-error
+            *ngIf="this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.INTERESTS)?.hasError('required') && this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.INTERESTS)?.touched">
+            <span [appRequiredField]="USER_PROFILE_CONSTANTS.INTERESTS_LABEL | titlecase"></span>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <!-- INTERESTS -->
+    </div>
+  </form>
+  <!-- DEMOGRAPHIC FORM -->
+
+</div>
+<!-- DEMOGRAPHIC DETAILS -->
