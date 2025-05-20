@@ -1,3 +1,12 @@
+export interface DemographicDetails {
+  firstName: string;
+  lastName: string;
+  email: string;
+  salutation: string;
+  gender: string;
+  interests: string[];
+}
+
 export interface EducationDetails {
   credential: string;
   institution: string;
@@ -13,7 +22,7 @@ export interface ExperienceDetails {
   durationInMonths: string;
 }
 
-export interface Address {
+export interface AddressDetails {
   type: string;
   country: string;
   state: string;
