@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EducationDetails } from '../_models/user-profile.models';
+import { minFormArrayLength } from 'src/app/shared/_helpers/to-check-min-formarray-length';
 
 export const FORMS_KEYS = {
   DEMOGRAPHIC_DETAILS: 'demographicDetailsFrom',
@@ -63,16 +64,18 @@ export class CreateProfileBaseClass implements OnInit {
    * - EDUCATION_LIST: An empty form array for education details list.
    * - EXPERIENCE_DETAILS: An empty form array for experience details.
    */
-
   public initForm() {
     this.createProfile = new FormGroup({
-      [FORMS_KEYS.DEMOGRAPHIC_DETAILS]: this.createDemographicDetailsForm(),
-      [FORMS_KEYS.ADDRESS]: this.createAddressForm(),
-      [FORMS_KEYS.ADDRESS_LIST]: new FormArray([]),
-      [FORMS_KEYS.EDUCATION_DETAILS]: this.createEducationDetailsForm(),
-      [FORMS_KEYS.EDUCATION_LIST]: new FormArray([]),
-      [FORMS_KEYS.EXPERIENCE_DETAILS_LIST]: new FormArray([]),
-      [FORMS_KEYS.EXPERIENCE_DETAILS]: this.createExperienceDetailsForm(),
+      [FORMS_KEYS.DEMOGRAPHIC_DETAILS]: this.createDemographicDetailsForm(), // DEMOGRAPHIC DETAILS
+      [FORMS_KEYS.ADDRESS]: this.createAddressForm(), // ADDRESS DETAILS
+      [FORMS_KEYS.ADDRESS_LIST]: new FormArray([], minFormArrayLength(1)), // ADDRESS LIST
+      [FORMS_KEYS.EDUCATION_DETAILS]: this.createEducationDetailsForm(), // EDUCATION DETAILS
+      [FORMS_KEYS.EDUCATION_LIST]: new FormArray([], minFormArrayLength(1)), // EDUCATION LIST
+      [FORMS_KEYS.EXPERIENCE_DETAILS]: this.createExperienceDetailsForm(), // EXPERIENCE DETAILS
+      [FORMS_KEYS.EXPERIENCE_DETAILS_LIST]: new FormArray(
+        [],
+        minFormArrayLength(1)
+      ), // EXPERIENCE LIST
     });
   }
 

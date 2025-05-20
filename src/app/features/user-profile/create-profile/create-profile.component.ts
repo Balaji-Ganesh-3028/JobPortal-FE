@@ -30,7 +30,9 @@ export class CreateProfileComponent
   isDisableSave(): boolean {
     return (
       this.demogrpahicDetailsForm().valid &&
-      this.educationDetailsList.length > 0
+      this.educationDetailsList.valid &&
+      this.experienceDetailsList.valid &&
+      this.addressDetailsList.valid
     );
   }
 }
