@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { UserProfileRoutingModule } from './user-profile-routing.module';
 import { UserProfileComponent } from './user-profile.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
-import { EditProfileComponent } from './edit-profile/edit-profile.component';
 import { MaterialModule } from 'src/app/core/material/material.module';
 import { DemographicDetailsComponent } from './_components/demographic-details/demographic-details.component';
 import { EducationDetailsComponent } from './_components/education-details/education-details.component';
@@ -22,7 +21,6 @@ import { RequiredFieldDirective } from 'src/app/core/directives/required-field.d
   declarations: [
     UserProfileComponent,
     CreateProfileComponent,
-    EditProfileComponent,
     DemographicDetailsComponent,
     EducationDetailsComponent,
     ExperienceDetailsComponent,

@@ -5,7 +5,7 @@ import {
 } from 'src/app/core/_constants';
 import { USER_PROFILE_CONSTANTS } from '../../_constants/user-profile-constants.constants';
 import { FormGroup } from '@angular/forms';
-import { Address } from '../../_models/user-profile.models';
+import { AddressDetails } from '../../_models/user-profile.models';
 import { ADDRESS_FORMS_KEYS } from '../../_classes/create-profile-base-class';
 
 @Component({
@@ -20,7 +20,7 @@ export class AddressComponent {
   public readonly ADDRESS_FORMS_KEYS = ADDRESS_FORMS_KEYS;
 
   @Input() public form!: FormGroup;
-  @Output() public addAddress = new EventEmitter<Address>();
+  @Output() public addAddress = new EventEmitter<AddressDetails>();
 
   public addressList: any[] = [];
 
