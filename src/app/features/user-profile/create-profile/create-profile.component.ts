@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { USER_PROFILE_CONSTANTS } from '../_constants/user-profile-constants.constants';
 import { CreateProfileBaseClass } from '../_classes/create-profile-base-class';
+import { UserProfileModal } from '../_models/user-profile-modal';
+import { setAdaptors } from '../_helpers/set-adaptors';
 
 @Component({
   selector: 'app-create-profile',
@@ -24,6 +26,7 @@ export class CreateProfileComponent
   onSave(event: any): void {
     if (event === true) {
       console.log(this.createProfile.value);
+      console.log(new UserProfileModal(setAdaptors(this.createProfile.value)));
     }
   }
 

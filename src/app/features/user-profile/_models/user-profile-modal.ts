@@ -3,20 +3,19 @@ import {
   EducationDetails,
   ExperienceDetails,
   AddressDetails,
+  UserProfile,
 } from './user-profile.models';
 
 export class UserProfileModal {
   demographicDetails: DemographicDetails;
-  educationDetails: EducationDetails;
-  experienceDetails: ExperienceDetails;
-  address: AddressDetails;
+  educationDetails: EducationDetails[];
+  experienceDetails: ExperienceDetails[];
+  address: AddressDetails[];
 
-  constructor(
-    demographicDetails: DemographicDetails,
-    educationDetails: EducationDetails,
-    experienceDetails: ExperienceDetails,
-    address: AddressDetails
-  ) {
+  constructor(userProfile: UserProfile) {
+    const { demographicDetails, educationDetails, experienceDetails, address } =
+      userProfile;
+
     this.demographicDetails = {
       firstName: demographicDetails.firstName,
       lastName: demographicDetails.lastName,
@@ -26,28 +25,28 @@ export class UserProfileModal {
       interests: demographicDetails.interests,
     };
 
-    this.educationDetails = {
-      credential: educationDetails.credential,
-      institution: educationDetails.institution,
-      degreeCertificate: educationDetails.degreeCertificate,
-      state: educationDetails.state,
-      city: educationDetails.city,
-    };
+    this.educationDetails = educationDetails.map((ed) => ({
+      credential: ed.credential,
+      institution: ed.institution,
+      degreeCertificate: ed.degreeCertificate,
+      state: ed.state,
+      city: ed.city,
+    }));
 
-    this.experienceDetails = {
-      employer: experienceDetails.employer,
-      role: experienceDetails.role,
-      doj: experienceDetails.doj,
-      durationInMonths: experienceDetails.durationInMonths,
-    };
+    this.experienceDetails = experienceDetails.map((ex) => ({
+      employer: ex.employer,
+      role: ex.role,
+      doj: ex.doj,
+      durationInMonths: ex.durationInMonths,
+    }));
 
-    this.address = {
+    this.address = address.map((address) => ({
       type: address.type,
       country: address.country,
       state: address.state,
       city: address.city,
       street: address.street,
       pincode: address.pincode,
-    };
+    }));
   }
 }

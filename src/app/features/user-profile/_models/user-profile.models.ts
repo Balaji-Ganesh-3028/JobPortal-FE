@@ -30,3 +30,10 @@ export interface AddressDetails {
   street: string;
   pincode: string;
 }
+
+export interface UserProfile {
+  demographicDetails: DemographicDetails;
+  educationDetails: EducationDetails[];
+  experienceDetails: ExperienceDetails[];
+  address: AddressDetails[];
+}
