@@ -1,6 +1,8 @@
 import { Injectable, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EducationDetails } from '../_models/user-profile.models';
+import { minFormArrayLength } from 'src/app/shared/_helpers/to-check-min-formarray-length';
+import { first } from 'rxjs';
 
 export const FORMS_KEYS = {
   DEMOGRAPHIC_DETAILS: 'demographicDetailsFrom',
@@ -53,6 +55,7 @@ export class CreateProfileBaseClass implements OnInit {
 
   ngOnInit() {
     this.initForm();
+    this.populateForm(); // Patch values
   }
 
   /**
@@ -63,16 +66,18 @@ export class CreateProfileBaseClass implements OnInit {
    * - EDUCATION_LIST: An empty form array for education details list.
    * - EXPERIENCE_DETAILS: An empty form array for experience details.
    */
-
   public initForm() {
     this.createProfile = new FormGroup({
-      [FORMS_KEYS.DEMOGRAPHIC_DETAILS]: this.createDemographicDetailsForm(),
-      [FORMS_KEYS.ADDRESS]: this.createAddressForm(),
-      [FORMS_KEYS.ADDRESS_LIST]: new FormArray([]),
-      [FORMS_KEYS.EDUCATION_DETAILS]: this.createEducationDetailsForm(),
-      [FORMS_KEYS.EDUCATION_LIST]: new FormArray([]),
-      [FORMS_KEYS.EXPERIENCE_DETAILS_LIST]: new FormArray([]),
-      [FORMS_KEYS.EXPERIENCE_DETAILS]: this.createExperienceDetailsForm(),
+      [FORMS_KEYS.DEMOGRAPHIC_DETAILS]: this.createDemographicDetailsForm(), // DEMOGRAPHIC DETAILS
+      [FORMS_KEYS.ADDRESS]: this.createAddressForm(), // ADDRESS DETAILS
+      [FORMS_KEYS.ADDRESS_LIST]: new FormArray([], minFormArrayLength(1)), // ADDRESS LIST
+      [FORMS_KEYS.EDUCATION_DETAILS]: this.createEducationDetailsForm(), // EDUCATION DETAILS
+      [FORMS_KEYS.EDUCATION_LIST]: new FormArray([], minFormArrayLength(1)), // EDUCATION LIST
+      [FORMS_KEYS.EXPERIENCE_DETAILS]: this.createExperienceDetailsForm(), // EXPERIENCE DETAILS
+      [FORMS_KEYS.EXPERIENCE_DETAILS_LIST]: new FormArray(
+        [],
+        minFormArrayLength(1)
+      ), // EXPERIENCE LIST
     });
   }
 
@@ -270,5 +275,70 @@ export class CreateProfileBaseClass implements OnInit {
       addressDetailsForm.patchValue(event); // PATCH VALUE
       this.addressDetailsList.push(addressDetailsForm); // PUSH THE FORM GROUP TO THE FORM ARRAY
     }
+  }
+
+  populateForm(): void {
+    const demographicDetails = {
+      firstName: 'John',
+      lastName: 'Doe',
+      email: 'TlB4H@example.com',
+      gender: 'Male',
+      salutation: 'Mr.',
+      interests: ['Movie', 'Cooking'],
+    };
+
+    const addressList = [
+      new FormControl({
+        type: 'Permanent',
+        country: 'India',
+        state: 'Tamil Nadu',
+        city: 'Chennai',
+        street: '123 Main St',
+        pincode: '600001',
+      }),
+    ];
+
+    const educationList = [
+      new FormControl({
+        credential: 'UG',
+        institution: 'ABC College',
+        degreeCertificate: 'Yes',
+        state: 'Male',
+        city: 'Female',
+      }),
+    ];
+
+    const experienceList = [
+      new FormControl({
+        employer: 'XYZ Corp',
+        role: 'Software Engineer',
+        doj: new Date('2020-01-01'),
+        durationInMonths: '24',
+      }),
+    ];
+
+    this.createProfile.patchValue({
+      [FORMS_KEYS.DEMOGRAPHIC_DETAILS]: demographicDetails,
+      // ADDRESS and EDUCATION_DETAILS can be skipped or added
+    });
+
+    (this.createProfile.get(FORMS_KEYS.ADDRESS_LIST) as FormArray).clear();
+    addressList.forEach((addr) =>
+      (this.createProfile.get(FORMS_KEYS.ADDRESS_LIST) as FormArray).push(addr)
+    );
+
+    (this.createProfile.get(FORMS_KEYS.EDUCATION_LIST) as FormArray).clear();
+    educationList.forEach((edu) =>
+      (this.createProfile.get(FORMS_KEYS.EDUCATION_LIST) as FormArray).push(edu)
+    );
+
+    (
+      this.createProfile.get(FORMS_KEYS.EXPERIENCE_DETAILS_LIST) as FormArray
+    ).clear();
+    experienceList.forEach((exp) =>
+      (
+        this.createProfile.get(FORMS_KEYS.EXPERIENCE_DETAILS_LIST) as FormArray
+      ).push(exp)
+    );
   }
 }

@@ -7,6 +7,7 @@ import { USER_PROFILE_CONSTANTS } from '../../_constants/user-profile-constants.
 import { FormGroup } from '@angular/forms';
 import { EXPERIENCE_DETAILS_FORMS_KEYS } from '../../_classes/create-profile-base-class';
 import { ExperienceDetails } from '../../_models/user-profile.models';
+import { MasterData } from 'src/app/core/_models/master-list';
 
 @Component({
   selector: 'app-experience-details',

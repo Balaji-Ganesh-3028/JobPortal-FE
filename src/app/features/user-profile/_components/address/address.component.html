@@ -19,7 +19,8 @@
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>{{USER_PROFILE_CONSTANTS.TYPE_LABEL| titlecase}}</mat-label>
           <mat-select [formControlName]="ADDRESS_FORMS_KEYS.TYPE" id="type">
-            <mat-option *ngFor="let type of FROMS_OPTIONS.TYPE" value="{{type.value}}">{{type.value}}</mat-option>
+            <mat-option *ngFor="let type of this.dropdownData?.addressType"
+              value="{{type.name}}">{{type.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -30,8 +31,8 @@
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>{{USER_PROFILE_CONSTANTS.G_COUNTRY_LABEL| titlecase}}</mat-label>
           <mat-select [formControlName]="ADDRESS_FORMS_KEYS.COUNTRY" id="country">
-            <mat-option *ngFor="let gender of FROMS_OPTIONS.GENDER"
-              value="{{gender.value}}">{{gender.value}}</mat-option>
+            <mat-option *ngFor="let country of this.dropdownData?.country" value="{{country.name}}"
+              (click)="onChangeCountry(country.id)">{{country.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -42,8 +43,8 @@
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>{{USER_PROFILE_CONSTANTS.G_STATE_LABEL| titlecase}}</mat-label>
           <mat-select [formControlName]="ADDRESS_FORMS_KEYS.STATE" id="state">
-            <mat-option *ngFor="let gender of FROMS_OPTIONS.GENDER"
-              value="{{gender.value}}">{{gender.value}}</mat-option>
+            <mat-option *ngFor="let state of this.dropdownData?.state" value="{{state.name}}"
+              (click)="onChangeState(state.id)">{{state.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -54,8 +55,7 @@
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>{{USER_PROFILE_CONSTANTS.G_CITY_LABEL| titlecase}}</mat-label>
           <mat-select [formControlName]="ADDRESS_FORMS_KEYS.CITY" id="city">
-            <mat-option *ngFor="let gender of FROMS_OPTIONS.GENDER"
-              value="{{gender.value}}">{{gender.value}}</mat-option>
+            <mat-option *ngFor="let city of this.dropdownData?.city" value="{{city.name}}">{{city.name}}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>

@@ -14,12 +14,13 @@
         <!-- CREATE PROFILE HEADING -->
 
         <!-- DEMOGRAPHIC DETAILS -->
-        <app-demographic-details [form]="demogrpahicDetailsForm()"></app-demographic-details>
+        <app-demographic-details [form]="demogrpahicDetailsForm()"
+          [dropdownData]="masterData"></app-demographic-details>
         <!-- DEMOGRAPHIC DETAILS -->
 
         <!-- EDUCATION DETAILS -->
-        <app-education-details [form]="educationDetailsForm()"
-          (addEducationDetails)="onAddEducationDetails($event)"></app-education-details>
+        <app-education-details *ngIf="masterData" [form]="educationDetailsForm()"
+          (addEducationDetails)="onAddEducationDetails($event)" [dropdownData]="masterData"></app-education-details>
         <!-- EDUCATION DETAILS -->
 
         <!-- EXPERIENCE DETAILS -->
@@ -28,7 +29,8 @@
         <!-- EXPERIENCE DETAILS -->
 
         <!-- ADDRESS -->
-        <app-address [form]="addressForm()" (addAddress)="onAddAddress($event)"></app-address>
+        <app-address [form]="addressForm()" (addAddress)="onAddAddress($event)"
+          [dropdownData]="masterData"></app-address>
         <!-- ADDRESS -->
 
         <!-- BUTTONS -->
