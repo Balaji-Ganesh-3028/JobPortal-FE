@@ -22,8 +22,8 @@
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>{{USER_PROFILE_CONSTANTS.SALUTATION_LABEL | titlecase}}</mat-label>
           <mat-select [formControlName]="DEMOGRAPHIC_DETAILS_FORMS_KEYS.SALUTATION" id="salutation">
-            <mat-option *ngFor="let salutation of FROMS_OPTIONS.SALUTATION"
-              value="{{salutation.value}}">{{salutation.value}}</mat-option>
+            <mat-option *ngFor="let salutation of this.dropdownData?.salutation"
+              value="{{salutation.code}}">{{salutation.code}}</mat-option>
           </mat-select>
           <mat-error
             *ngIf="this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.SALUTATION)?.hasError('required') && this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.SALUTATION)?.touched">
@@ -65,8 +65,8 @@
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>{{USER_PROFILE_CONSTANTS.GENDER_LABEL | titlecase}}</mat-label>
           <mat-select [formControlName]="DEMOGRAPHIC_DETAILS_FORMS_KEYS.GENDER" id="gender">
-            <mat-option *ngFor="let gender of FROMS_OPTIONS.GENDER"
-              value="{{gender.value}}">{{gender.value}}</mat-option>
+            <mat-option *ngFor="let gender of this.dropdownData?.gender"
+              value="{{gender.name}}">{{gender.name}}</mat-option>
           </mat-select>
           <mat-error
             *ngIf="this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.GENDER)?.hasError('required') && this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.GENDER)?.touched">
@@ -94,8 +94,8 @@
         <mat-form-field class="example-full-width" appearance="outline">
           <mat-label>{{USER_PROFILE_CONSTANTS.INTERESTS_LABEL | titlecase}}</mat-label>
           <mat-select multiple [formControlName]="DEMOGRAPHIC_DETAILS_FORMS_KEYS.INTERESTS" id="interests">
-            <mat-option *ngFor="let interest of FROMS_OPTIONS.INTERESTS"
-              [value]="interest.value">{{interest.value}}</mat-option>
+            <mat-option *ngFor="let interest of this.dropdownData?.interest"
+              [value]="interest.name">{{interest.name}}</mat-option>
           </mat-select>
           <mat-error
             *ngIf="this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.INTERESTS)?.hasError('required') && this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.INTERESTS)?.touched">

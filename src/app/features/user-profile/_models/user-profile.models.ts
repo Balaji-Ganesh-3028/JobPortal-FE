@@ -8,6 +8,7 @@ export interface DemographicDetails {
 }
 
 export interface EducationDetails {
+  educationId: number;
   credential: string;
   institution: string;
   degreeCertificate: string;
@@ -16,13 +17,15 @@ export interface EducationDetails {
 }
 
 export interface ExperienceDetails {
+  experienceId: number;
   employer: string;
   role: string;
   doj: Date;
-  durationInMonths: string;
+  durationInMonths: number;
 }
 
 export interface AddressDetails {
+  addressId: number;
   type: string;
   country: string;
   state: string;
@@ -36,4 +39,43 @@ export interface UserProfile {
   educationDetails: EducationDetails[];
   experienceDetails: ExperienceDetails[];
   address: AddressDetails[];
+}
+
+export interface UserProfileResponse {
+  FirstName: string;
+  LastName: string;
+  Email: string;
+  Salutation: string;
+  Gender: string;
+  Interests: string[];
+  EducationInformation: EducationInformation[];
+  ExperienceInformation: ExperienceInformation[];
+  Address: Address[];
+}
+
+export interface Address {
+  AddressId: number;
+  Type: string;
+  City: string;
+  State: string;
+  Country: string;
+  Pincode: string;
+  DoorNoStreet: string;
+}
+
+export interface ExperienceInformation {
+  ExperienceId: number;
+  Employer: string;
+  Role: string;
+  DOJ: string | null;
+  DurationInMonth: number;
+}
+
+export interface EducationInformation {
+  EducationId: number;
+  Credential: string;
+  DegreeCertificate: string;
+  Institution: string;
+  EducationCity: string;
+  EducationState: string;
 }

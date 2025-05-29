@@ -1,3 +1,4 @@
+import { formatDate } from 'src/app/shared/_helpers/format-date';
 import {
   ADDRESS_FORMS_KEYS,
   DEMOGRAPHIC_DETAILS_FORMS_KEYS,
@@ -5,7 +6,11 @@ import {
   EXPERIENCE_DETAILS_FORMS_KEYS,
   FORMS_KEYS,
 } from '../_classes/create-profile-base-class';
-import { EducationDetails, UserProfile } from '../_models/user-profile.models';
+import {
+  EducationDetails,
+  UserProfile,
+  UserProfileResponse,
+} from '../_models/user-profile.models';
 
 export function setAdaptors(formValues: any): UserProfile {
   const demographicDetails = formValues[FORMS_KEYS.DEMOGRAPHIC_DETAILS];
@@ -49,6 +54,47 @@ export function setAdaptors(formValues: any): UserProfile {
       city: address[ADDRESS_FORMS_KEYS.CITY],
       street: address[ADDRESS_FORMS_KEYS.DOOR_NO_AND_STREET],
       pincode: address[ADDRESS_FORMS_KEYS.PINCODE],
+    })),
+  };
+}
+
+// This function takes the form values and converts them into a UserProfile object.
+// It maps the form values to the corresponding properties in the UserProfile interface.
+export function responseAdaptor(data: UserProfile): UserProfileResponse {
+  return {
+    // Map form values to UserProfile properties
+    FirstName: data.demographicDetails.firstName,
+    LastName: data.demographicDetails.lastName,
+    Email: data.demographicDetails.email,
+    Salutation: data.demographicDetails.salutation,
+    Interests: data.demographicDetails.interests,
+    Gender: data.demographicDetails.gender,
+
+    EducationInformation: data.educationDetails.map((ed) => ({
+      EducationId: ed.educationId || 0,
+      Credential: ed.credential,
+      Institution: ed.institution,
+      DegreeCertificate: ed.degreeCertificate,
+      EducationState: ed.state,
+      EducationCity: ed.city,
+    })),
+
+    ExperienceInformation: data.experienceDetails.map((ex) => ({
+      ExperienceId: ex.experienceId || 0,
+      Employer: ex.employer,
+      Role: ex.role,
+      DOJ: formatDate(ex.doj),
+      DurationInMonth: ex.durationInMonths,
+    })),
+
+    Address: data.address.map((address) => ({
+      AddressId: address.addressId || 0,
+      Type: address.type,
+      Country: address.country,
+      State: address.state,
+      City: address.city,
+      DoorNoStreet: address.street,
+      Pincode: address.pincode,
     })),
   };
 }

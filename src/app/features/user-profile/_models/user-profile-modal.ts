@@ -16,6 +16,8 @@ export class UserProfileModal {
     const { demographicDetails, educationDetails, experienceDetails, address } =
       userProfile;
 
+    // Destructure the userProfile object to extract the properties
+    // Assign the values to the class properties
     this.demographicDetails = {
       firstName: demographicDetails.firstName,
       lastName: demographicDetails.lastName,
@@ -26,6 +28,7 @@ export class UserProfileModal {
     };
 
     this.educationDetails = educationDetails.map((ed) => ({
+      educationId: ed.educationId,
       credential: ed.credential,
       institution: ed.institution,
       degreeCertificate: ed.degreeCertificate,
@@ -34,6 +37,7 @@ export class UserProfileModal {
     }));
 
     this.experienceDetails = experienceDetails.map((ex) => ({
+      experienceId: ex.experienceId,
       employer: ex.employer,
       role: ex.role,
       doj: ex.doj,
@@ -41,6 +45,7 @@ export class UserProfileModal {
     }));
 
     this.address = address.map((address) => ({
+      addressId: address.addressId,
       type: address.type,
       country: address.country,
       state: address.state,
