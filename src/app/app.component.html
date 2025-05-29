@@ -1,2 +1,4 @@
+<app-spinner *ngIf="isLoading$ | async" class="sq-global-backdrop center-aligned"></app-spinner>
+{{isLoading$ | async }}
 <app-header></app-header>
 <router-outlet></router-outlet>

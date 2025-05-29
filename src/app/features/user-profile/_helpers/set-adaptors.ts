@@ -9,7 +9,7 @@ import {
 import {
   EducationDetails,
   UserProfile,
-  UserProfileResponse,
+  UserProfileDetails,
 } from '../_models/user-profile.models';
 
 export function setAdaptors(formValues: any): UserProfile {
@@ -60,7 +60,7 @@ export function setAdaptors(formValues: any): UserProfile {
 
 // This function takes the form values and converts them into a UserProfile object.
 // It maps the form values to the corresponding properties in the UserProfile interface.
-export function responseAdaptor(data: UserProfile): UserProfileResponse {
+export function responseAdaptor(data: UserProfile): UserProfileDetails {
   return {
     // Map form values to UserProfile properties
     FirstName: data.demographicDetails.firstName,

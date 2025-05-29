@@ -4,7 +4,10 @@ import { HttpBaseService } from 'src/app/core/_services/http-base/http-base.serv
 import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
 import { PROFILE_API_URL } from '../_constants/api-constants.constants';
-import { UserProfileResponse } from '../_models/user-profile.models';
+import {
+  UserProfileDetails,
+  UserProfileDetailsResponse,
+} from '../_models/user-profile.models';
 
 @Injectable({
   providedIn: 'root',
@@ -14,12 +17,15 @@ export class UserPorfileService {
   constructor() {}
 
   public createUserProfie(
-    userProfile: UserProfileResponse
-  ): Observable<UserProfileResponse> {
+    userProfile: UserProfileDetails
+  ): Observable<UserProfileDetailsResponse> {
     // This is a mock API endpoint. In a real application, you would replace this with your actual API endpoint.
     // The API endpoint should be defined in a configuration file or environment variable.
-    return this.httpService.post<UserProfileResponse>(
-      environment.apiBaseUrl + PROFILE_API_URL.CREATE_PROFILE,
+    return this.httpService.post<
+      UserProfileDetailsResponse,
+      UserProfileDetails
+    >(
+      `${environment.apiBaseUrl}${PROFILE_API_URL.CREATE_PROFILE}`,
       userProfile
     );
   }

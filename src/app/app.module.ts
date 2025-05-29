@@ -9,9 +9,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './core/material/material.module';
 import { HttpBaseService } from './core/_services/http-base/http-base.service';
 import { HttpClientModule } from '@angular/common/http';
+import { SnackbarService } from './shared/_services/toast-message/snackbar.service';
+import { SpinnerComponent } from './shared/_components/spinner/spinner.component';
 
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    FooterComponent,
+    SpinnerComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -19,7 +26,7 @@ import { HttpClientModule } from '@angular/common/http';
     MaterialModule,
     HttpClientModule,
   ],
-  providers: [HttpBaseService],
+  providers: [HttpBaseService, SnackbarService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

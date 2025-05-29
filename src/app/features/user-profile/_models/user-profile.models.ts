@@ -41,7 +41,7 @@ export interface UserProfile {
   address: AddressDetails[];
 }
 
-export interface UserProfileResponse {
+export interface UserProfileDetails {
   FirstName: string;
   LastName: string;
   Email: string;
@@ -78,4 +78,10 @@ export interface EducationInformation {
   Institution: string;
   EducationCity: string;
   EducationState: string;
+}
+
+export interface UserProfileDetailsResponse {
+  message: string;
+  id: number;
+  operationType: string;
 }
