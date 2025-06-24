@@ -11,8 +11,6 @@ export class MatSpinnerService {
   constructor() {}
 
   setLoading(isLoading: boolean): void {
-    console.log(isLoading);
     this.loadingSubject.next(isLoading);
-    document.body.classList.toggle('no-scroll', isLoading);
   }
 }

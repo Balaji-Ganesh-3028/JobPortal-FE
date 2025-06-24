@@ -16,6 +16,9 @@ import { AddressListComponent } from './_components/address-list/address-list.co
 import { CancelButtonComponent } from './_components/cancel-button/cancel-button.component';
 import { SaveButtonComponent } from './_components/save-button/save-button.component';
 import { RequiredFieldDirective } from 'src/app/core/directives/required-field.directive';
+import { ViewProfileComponent } from './view-profile/view-profile.component';
+import { ViewAllProfileComponent } from './view-all-profile/view-all-profile.component';
+import { EditButtonComponent } from './_components/edit-button/edit-button.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +35,9 @@ import { RequiredFieldDirective } from 'src/app/core/directives/required-field.d
     CancelButtonComponent,
     SaveButtonComponent,
     RequiredFieldDirective,
+    ViewProfileComponent,
+    ViewAllProfileComponent,
+    EditButtonComponent,
   ],
   imports: [CommonModule, UserProfileRoutingModule, MaterialModule],
 })

@@ -1,74 +1,98 @@
 <!-- EDUCATION DETAILS -->
-<div class="experience-details">
-  <div class="row">
-    <div class="col-lg-12">
-      <!-- EXPERIENCE DETAILS HEADING -->
-      <div class="experience-details-heading">
-        <div class="heading-label mt-2"><span>{{USER_PROFILE_CONSTANTS.EXPERIENCE_DETAILS_HEADING |
-            titlecase}}</span>
+<section *ngIf="isEditMode">
+  <div class="experience-details">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- EXPERIENCE DETAILS HEADING -->
+        <div class="experience-details-heading">
+          <div class="heading-label mt-2"><span>{{USER_PROFILE_CONSTANTS.EXPERIENCE_DETAILS_HEADING |
+              titlecase}}</span>
+          </div>
         </div>
+        <!-- EXPERIENCE DETAILS HEADING -->
       </div>
-      <!-- EXPERIENCE DETAILS HEADING -->
     </div>
+
+    <form [formGroup]="form">
+      <div class="row">
+        <!-- EMPLOYER -->
+        <div class="col-lg-12 mt-4">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>{{USER_PROFILE_CONSTANTS.EMPLOYER_LABEL| titlecase}}</mat-label>
+            <input matInput [formControlName]="EXPERIENCE_DETAILS_FORMS_KEYS.EMPLOYER"
+              [placeholder]="APP_CONSTANTS.G_ENTER_PLACEHOLDER" id="employer">
+          </mat-form-field>
+        </div>
+        <!-- EMPLOYER -->
+
+        <!-- DOJ -->
+        <div class="col-lg-12 mt-4">
+          <mat-form-field color="accent" class="example-full-width" appearance="outline">
+            <mat-label>{{USER_PROFILE_CONSTANTS.DOJ_LABEL| titlecase}}</mat-label>
+            <input matInput [formControlName]="EXPERIENCE_DETAILS_FORMS_KEYS.DOJ" [matDatepicker]="picker" id="doj">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker color="primary"></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <!-- DOJ -->
+
+        <!-- ROLE -->
+        <div class="col-lg-12 mt-4">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>{{USER_PROFILE_CONSTANTS.ROLE_LABEL| titlecase}}</mat-label>
+            <input matInput [formControlName]="EXPERIENCE_DETAILS_FORMS_KEYS.ROLE"
+              [placeholder]="APP_CONSTANTS.G_ENTER_PLACEHOLDER" id="role">
+          </mat-form-field>
+        </div>
+        <!-- ROLE -->
+
+        <!-- DURATION IN MONTH -->
+        <div class="col-lg-12 mt-4">
+          <mat-form-field class="example-full-width" appearance="outline">
+            <mat-label>{{USER_PROFILE_CONSTANTS.DURATION_IN_MONTHS_LABEL| titlecase}}</mat-label>
+            <input matInput [formControlName]="EXPERIENCE_DETAILS_FORMS_KEYS.DURATION_IN_MONTHS"
+              [placeholder]="APP_CONSTANTS.G_ENTER_PLACEHOLDER" id="durationInMonths">
+          </mat-form-field>
+        </div>
+        <!-- DURATION IN MONTH -->
+
+        <!-- ADD EXPERIENCE DETAILS -->
+        <div class="col-lg-12">
+          <button mat-button color="warn" type="button" (click)="addNewExperienceDetails()"><mat-icon>add</mat-icon>
+            Experience Details</button>
+        </div>
+        <!-- ADD EXPERIENCE DETAILS -->
+
+      </div>
+    </form>
+
+    <!-- EXPERIENCE DETAILS LIST -->
+    <app-experience-details-list [experienceDetailsList]="experienceDetailsList"></app-experience-details-list>
+    <!-- EXPERIENCE DETAILS LIST -->
+
+  </div>
+</section>
+
+<section *ngIf="!isEditMode && (data$ | async)">
+  <div class="experience-details">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- EXPERIENCE DETAILS HEADING -->
+        <div class="experience-details-heading">
+          <div class="heading-label mt-2"><span>{{USER_PROFILE_CONSTANTS.EXPERIENCE_DETAILS_HEADING |
+              titlecase}}</span>
+          </div>
+        </div>
+        <!-- EXPERIENCE DETAILS HEADING -->
+      </div>
+    </div>
+
+    <!-- EXPERIENCE DETAILS LIST -->
+    <app-experience-details-list [experienceDetailsList]="profilieData.experienceDetails"></app-experience-details-list>
+    <!-- EXPERIENCE DETAILS LIST -->
+
   </div>
 
-  <form [formGroup]="form">
-    <div class="row">
-      <!-- EMPLOYER -->
-      <div class="col-lg-12 mt-4">
-        <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>{{USER_PROFILE_CONSTANTS.EMPLOYER_LABEL| titlecase}}</mat-label>
-          <input matInput [formControlName]="EXPERIENCE_DETAILS_FORMS_KEYS.EMPLOYER"
-            [placeholder]="APP_CONSTANTS.G_ENTER_PLACEHOLDER" id="employer">
-        </mat-form-field>
-      </div>
-      <!-- EMPLOYER -->
-
-      <!-- DOJ -->
-      <div class="col-lg-12 mt-4">
-        <mat-form-field color="accent" class="example-full-width" appearance="outline">
-          <mat-label>{{USER_PROFILE_CONSTANTS.DOJ_LABEL| titlecase}}</mat-label>
-          <input matInput [formControlName]="EXPERIENCE_DETAILS_FORMS_KEYS.DOJ" [matDatepicker]="picker" id="doj">
-          <mat-hint>MM/DD/YYYY</mat-hint>
-          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
-          <mat-datepicker #picker color="primary"></mat-datepicker>
-        </mat-form-field>
-      </div>
-      <!-- DOJ -->
-
-      <!-- ROLE -->
-      <div class="col-lg-12 mt-4">
-        <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>{{USER_PROFILE_CONSTANTS.ROLE_LABEL| titlecase}}</mat-label>
-          <input matInput [formControlName]="EXPERIENCE_DETAILS_FORMS_KEYS.ROLE"
-            [placeholder]="APP_CONSTANTS.G_ENTER_PLACEHOLDER" id="role">
-        </mat-form-field>
-      </div>
-      <!-- ROLE -->
-
-      <!-- DURATION IN MONTH -->
-      <div class="col-lg-12 mt-4">
-        <mat-form-field class="example-full-width" appearance="outline">
-          <mat-label>{{USER_PROFILE_CONSTANTS.DURATION_IN_MONTHS_LABEL| titlecase}}</mat-label>
-          <input matInput [formControlName]="EXPERIENCE_DETAILS_FORMS_KEYS.DURATION_IN_MONTHS"
-            [placeholder]="APP_CONSTANTS.G_ENTER_PLACEHOLDER" id="durationInMonths">
-        </mat-form-field>
-      </div>
-      <!-- DURATION IN MONTH -->
-
-      <!-- ADD EXPERIENCE DETAILS -->
-      <div class="col-lg-12">
-        <button mat-button color="warn" type="button" (click)="addNewExperienceDetails()"><mat-icon>add</mat-icon>
-          Experience Details</button>
-      </div>
-      <!-- ADD EXPERIENCE DETAILS -->
-
-    </div>
-  </form>
-
-  <!-- EXPERIENCE DETAILS LIST -->
-  <app-experience-details-list [experienceDetailsList]="experienceDetailsList"></app-experience-details-list>
-  <!-- EXPERIENCE DETAILS LIST -->
-
-</div>
+</section>
 <!-- EXPERIENCE DETAILS -->

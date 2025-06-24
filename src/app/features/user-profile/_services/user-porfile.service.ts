@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environment/environment';
 import { PROFILE_API_URL } from '../_constants/api-constants.constants';
 import {
+  UserProfile,
   UserProfileDetails,
   UserProfileDetailsResponse,
 } from '../_models/user-profile.models';
@@ -27,6 +28,18 @@ export class UserPorfileService {
     >(
       `${environment.apiBaseUrl}${PROFILE_API_URL.CREATE_PROFILE}`,
       userProfile
+    );
+  }
+
+  public getUserProfile(userId: number): Observable<UserProfileDetails> {
+    return this.httpService.get<UserProfileDetails>(
+      `${environment.apiBaseUrl}${PROFILE_API_URL.GET_PROFILE}${userId}`
+    );
+  }
+
+  public getAllUserProfiles(): Observable<UserProfileDetails[]> {
+    return this.httpService.get<UserProfileDetails[]>(
+      `${environment.apiBaseUrl}${PROFILE_API_URL.GET_ALL_PROFILES}`
     );
   }
 }

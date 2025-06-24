@@ -9,6 +9,8 @@ import { AddressDetails } from '../../_models/user-profile.models';
 import { ADDRESS_FORMS_KEYS } from '../../_classes/create-profile-base-class';
 import { MasterData } from 'src/app/core/_models/master-list';
 import { DropdownService } from 'src/app/core/_services/master-data/dropdown.service';
+import { Observable } from 'rxjs';
+import { UserProfileModal } from '../../_models/user-profile-modal';
 
 @Component({
   selector: 'app-address',
@@ -22,12 +24,14 @@ export class AddressComponent {
   public readonly ADDRESS_FORMS_KEYS = ADDRESS_FORMS_KEYS;
   public _dropdownData!: MasterData; // Adjust type as needed
   private dropdownService = inject(DropdownService);
+  public profilieData!: UserProfileModal;
 
   @Input() public form!: FormGroup;
+  @Input() public data$!: Observable<UserProfileModal | null>; // Observable for user profile data
+  @Input() public isEditMode: boolean = true; // Default to true for edit mode
   @Input() public set dropdownData(data: MasterData) {
     if (data) {
       this._dropdownData = data;
-      console.log('Dropdown data set:', this._dropdownData);
     }
   } // Adjust type as needed
 
@@ -36,6 +40,16 @@ export class AddressComponent {
   public addressList: any[] = [];
 
   constructor() {}
+
+  ngOnInit(): void {
+    if (!this.isEditMode) {
+      this.data$.subscribe((data) => {
+        if (data) {
+          this.profilieData = data || []; // Initialize address list from user profile data
+        }
+      });
+    }
+  }
 
   get dropdownData(): MasterData {
     return this._dropdownData;

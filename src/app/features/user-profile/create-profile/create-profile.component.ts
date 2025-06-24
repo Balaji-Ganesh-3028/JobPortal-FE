@@ -63,7 +63,7 @@ export class CreateProfileComponent
       this.loaderService.setLoading(true); // Start loading spinner
 
       const response = new UserProfileModal(
-        setAdaptors(this.createProfile.value)
+        setAdaptors(this.createProfile.value, [])
       );
       // Call the service to save the user profile
       this.userProfileService

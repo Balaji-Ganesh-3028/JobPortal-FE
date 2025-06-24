@@ -12,20 +12,32 @@ import {
   UserProfileDetails,
 } from '../_models/user-profile.models';
 
-export function setAdaptors(formValues: any): UserProfile {
+export function setAdaptors(
+  formValues: any,
+  interestId: number[],
+  userId: number = 0
+): UserProfile {
   const demographicDetails = formValues[FORMS_KEYS.DEMOGRAPHIC_DETAILS];
   const educationDetails = formValues[FORMS_KEYS.EDUCATION_LIST];
   const experienceDetails = formValues[FORMS_KEYS.EXPERIENCE_DETAILS_LIST];
   const address = formValues[FORMS_KEYS.ADDRESS_LIST];
 
+  const interestData =
+    demographicDetails[DEMOGRAPHIC_DETAILS_FORMS_KEYS.INTERESTS];
+  const interests = interestData.map((interest: any, index: number) => ({
+    interestId: interestId[index] || 0, // Default to 0 if interestId is not provided
+    value: interest.value,
+  }));
+
   // Convert the demographicDetails object to the desired format
   return {
+    userId: userId,
     demographicDetails: {
       firstName: demographicDetails[DEMOGRAPHIC_DETAILS_FORMS_KEYS.FIRSTNAME],
       lastName: demographicDetails[DEMOGRAPHIC_DETAILS_FORMS_KEYS.LASTNAME],
       email: demographicDetails[DEMOGRAPHIC_DETAILS_FORMS_KEYS.EMAIL],
       salutation: demographicDetails[DEMOGRAPHIC_DETAILS_FORMS_KEYS.SALUTATION],
-      interests: demographicDetails[DEMOGRAPHIC_DETAILS_FORMS_KEYS.INTERESTS],
+      interests: interests,
       gender: demographicDetails[DEMOGRAPHIC_DETAILS_FORMS_KEYS.GENDER],
     },
 
@@ -61,40 +73,42 @@ export function setAdaptors(formValues: any): UserProfile {
 // This function takes the form values and converts them into a UserProfile object.
 // It maps the form values to the corresponding properties in the UserProfile interface.
 export function responseAdaptor(data: UserProfile): UserProfileDetails {
+  console.log('data', data);
   return {
     // Map form values to UserProfile properties
-    FirstName: data.demographicDetails.firstName,
-    LastName: data.demographicDetails.lastName,
-    Email: data.demographicDetails.email,
-    Salutation: data.demographicDetails.salutation,
-    Interests: data.demographicDetails.interests,
-    Gender: data.demographicDetails.gender,
+    userId: data.userId || 0,
+    firstName: data.demographicDetails.firstName,
+    lastName: data.demographicDetails.lastName,
+    email: data.demographicDetails.email,
+    salutation: data.demographicDetails.salutation,
+    interests: data.demographicDetails.interests,
+    gender: data.demographicDetails.gender,
 
-    EducationInformation: data.educationDetails.map((ed) => ({
-      EducationId: ed.educationId || 0,
-      Credential: ed.credential,
-      Institution: ed.institution,
-      DegreeCertificate: ed.degreeCertificate,
-      EducationState: ed.state,
-      EducationCity: ed.city,
+    educationInformation: data.educationDetails.map((ed) => ({
+      educationId: ed.educationId || 0,
+      credential: ed.credential,
+      institution: ed.institution,
+      degreeCertificate: ed.degreeCertificate,
+      educationState: ed.state,
+      educationCity: ed.city,
     })),
 
-    ExperienceInformation: data.experienceDetails.map((ex) => ({
-      ExperienceId: ex.experienceId || 0,
-      Employer: ex.employer,
-      Role: ex.role,
-      DOJ: formatDate(ex.doj),
-      DurationInMonth: ex.durationInMonths,
+    experienceInformation: data.experienceDetails.map((ex) => ({
+      experienceId: ex.experienceId || 0,
+      employer: ex.employer,
+      role: ex.role,
+      doj: formatDate(ex.doj),
+      durationInMonth: ex.durationInMonths,
     })),
 
-    Address: data.address.map((address) => ({
-      AddressId: address.addressId || 0,
-      Type: address.type,
-      Country: address.country,
-      State: address.state,
-      City: address.city,
-      DoorNoStreet: address.street,
-      Pincode: address.pincode,
+    address: data.address.map((address) => ({
+      addressId: address.addressId || 0,
+      type: address.type,
+      country: address.country,
+      state: address.state,
+      city: address.city,
+      doorNoStreet: address.street,
+      pincode: address.pincode,
     })),
   };
 }

@@ -4,7 +4,7 @@ export interface DemographicDetails {
   email: string;
   salutation: string;
   gender: string;
-  interests: string[];
+  interests: { interestId: number; value: string }[];
 }
 
 export interface EducationDetails {
@@ -34,50 +34,59 @@ export interface AddressDetails {
   pincode: string;
 }
 
+// FOR CLIENT SIDE
+// This interface is used to represent the user profile details that will be displayed on the client side.
+// It includes demographic details, education details, experience details, and address details.
 export interface UserProfile {
+  userId: number;
   demographicDetails: DemographicDetails;
   educationDetails: EducationDetails[];
   experienceDetails: ExperienceDetails[];
   address: AddressDetails[];
 }
 
+// FOR SERVER SIDE
+// This interface is used to represent the user profile details that will be sent to the server.
+// It includes user ID, first name, last name, email, salutation, gender, and interests.
+// It also includes education information, experience information, and address details.
 export interface UserProfileDetails {
-  FirstName: string;
-  LastName: string;
-  Email: string;
-  Salutation: string;
-  Gender: string;
-  Interests: string[];
-  EducationInformation: EducationInformation[];
-  ExperienceInformation: ExperienceInformation[];
-  Address: Address[];
+  userId: number;
+  firstName: string;
+  lastName: string;
+  email: string;
+  salutation: string;
+  gender: string;
+  interests: { interestId: number; value: string }[];
+  educationInformation: EducationInformation[];
+  experienceInformation: ExperienceInformation[];
+  address: Address[];
 }
 
 export interface Address {
-  AddressId: number;
-  Type: string;
-  City: string;
-  State: string;
-  Country: string;
-  Pincode: string;
-  DoorNoStreet: string;
+  addressId: number;
+  type: string;
+  city: string;
+  state: string;
+  country: string;
+  pincode: string;
+  doorNoStreet: string;
 }
 
 export interface ExperienceInformation {
-  ExperienceId: number;
-  Employer: string;
-  Role: string;
-  DOJ: string | null;
-  DurationInMonth: number;
+  experienceId: number;
+  employer: string;
+  role: string;
+  doj: string | null;
+  durationInMonth: number;
 }
 
 export interface EducationInformation {
-  EducationId: number;
-  Credential: string;
-  DegreeCertificate: string;
-  Institution: string;
-  EducationCity: string;
-  EducationState: string;
+  educationId: number;
+  credential: string;
+  degreeCertificate: string;
+  institution: string;
+  educationCity: string;
+  educationState: string;
 }
 
 export interface UserProfileDetailsResponse {
