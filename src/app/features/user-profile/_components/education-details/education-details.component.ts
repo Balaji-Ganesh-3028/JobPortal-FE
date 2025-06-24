@@ -16,6 +16,8 @@ import { EDUCATION_DETAILS_FORMS_KEYS } from '../../_classes/create-profile-base
 import { EducationDetails } from '../../_models/user-profile.models';
 import { MasterData } from 'src/app/core/_models/master-list';
 import { DropdownService } from 'src/app/core/_services/master-data/dropdown.service';
+import { Observable } from 'rxjs';
+import { UserProfileModal } from '../../_models/user-profile-modal';
 
 @Component({
   selector: 'app-education-details',
@@ -28,13 +30,15 @@ export class EducationDetailsComponent implements OnInit {
   public readonly FROMS_OPTIONS = FORMS_OPTIONS_CONSTANTS;
   public readonly EDUCATION_DETAILS_FORMS_KEYS = EDUCATION_DETAILS_FORMS_KEYS;
   public _dropdownData!: MasterData; // Adjust type as needed
+  public profilieData!: UserProfileModal;
   private dropdownService = inject(DropdownService);
 
   @Input() public form!: FormGroup;
+  @Input() public data$!: Observable<UserProfileModal | null>; // Observable for user profile data
+  @Input() public isEditMode: boolean = true; // Default to true for edit mode
   @Input() public set dropdownData(data: MasterData) {
     if (data) {
       this._dropdownData = data;
-      console.log('Dropdown data set:', this._dropdownData);
     }
   } // Adjust type as needed
   @Output() public addEducationDetails = new EventEmitter<EducationDetails>();
@@ -42,8 +46,17 @@ export class EducationDetailsComponent implements OnInit {
   public educationDetailsList: EducationDetails[] = [];
 
   ngOnInit(): void {
-    console.log('EducationDetailsComponent initialized', this.dropdownData);
-    this.toGetState(1); // Initialize with a default state ID, e.g., 1
+    if (!this.isEditMode) {
+      console.log('Edit mode is enabled for Education Details');
+      this.data$.subscribe((data) => {
+        if (data) {
+          console.log('User Profile Data:', data);
+          this.profilieData = data; // Initialize education details list from user profile data
+        }
+      });
+    } else {
+      this.toGetState(1); // Initialize with a default state ID, e.g., 1
+    }
   }
 
   get dropdownData(): MasterData {

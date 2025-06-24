@@ -1,0 +1,27 @@
+@import './variables.scss';
+
+.center-aligned {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sq-global-backdrop{
+  opacity: 1;
+  background: $background-black;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  height: -webkit-fill-available;
+  pointer-events: all;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity .4s cubic-bezier(.25,.8,.25,1);
+}
+
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}

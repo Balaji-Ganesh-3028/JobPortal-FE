@@ -1,6 +1,8 @@
 export const USER_PROFILE_CONSTANTS = {
   CREATE_PROFILE_HEADING: 'create profile',
   EDIT_PROFILE_HEADING: 'edit profile',
+  MY_ACCOUNT_HEADING: 'my account',
+  BROWSE_PROFILE_HEADING: 'browse profile',
 
   // Common
   G_COUNTRY_LABEL: 'country',
@@ -8,6 +10,7 @@ export const USER_PROFILE_CONSTANTS = {
   G_CITY_LABEL: 'city',
   G_SAVE_LABEL: 'save',
   G_CANCEL_LABEL: 'cancel',
+  G_EDIT_LABEL: 'edit',
 
   // Demographic Details
   DEMOGRAPHIC_DETAILS_HEADING: 'demographic details',

@@ -1,0 +1,60 @@
+<section class="view-all-profile">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <!-- CREATE PROFILE HEADING -->
+        <div class="view-all-profile-heading">
+          <div class="heading-icon">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="more_horiz"></mat-icon>
+          </div>
+          <div class="heading-label">
+            <span>{{USER_PROFILE_CONSTANTS.BROWSE_PROFILE_HEADING | titlecase}}</span>
+          </div>
+        </div>
+        <!-- CREATE PROFILE HEADING -->
+      </div>
+
+      <div class="col-md-12 mt-3">
+        <div class="table-responsive">
+          <table class="table table-striped table-hover">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Salutation</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Gender</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Example static row, replace with *ngFor for dynamic data -->
+              <tr *ngFor="let profile of $profileData | async; let i = index">
+                <td>{{i + 1}}</td>
+                <td>{{profile.salutation}}</td>
+                <td>{{profile.firstName}}</td>
+                <td>{{profile.lastName}}</td>
+                <td>{{profile.email}}</td>
+                <td>{{profile.gender}}</td>
+                <td>
+                  <button class="btn btn-link p-0 me-2 icon-btn view-btn" title="View">
+                    <mat-icon fontIcon="visibility" aria-label="View"></mat-icon>
+                  </button>
+                  <button class="btn btn-link p-0 me-2 icon-btn edit-btn" title="Edit">
+                    <mat-icon fontIcon="edit" aria-label="Edit"></mat-icon>
+                  </button>
+                  <button class="btn btn-link p-0 icon-btn delete-btn" title="Delete">
+                    <mat-icon fontIcon="delete" aria-label="Delete"></mat-icon>
+                  </button>
+                </td>
+              </tr>
+              <!-- End example row -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

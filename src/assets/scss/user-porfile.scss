@@ -1,7 +1,7 @@
 @import './variables.scss';
 
-.create-profile {
-  .create-profile-heading {
+.create-profile, .view-profile, .view-all-profile, .edit-profile {
+  .create-profile-heading, .view-profile-heading, .view-all-profile-heading, .edit-profile-heading {
     display: flex;
     align-items: center;
     position: relative;
@@ -29,6 +29,23 @@
     border-right: 2px solid $light-gray;
     border-bottom: 2px solid $light-gray;
     padding: 10px 20px;
+
+    .readOnly-field {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+
+      .label {
+        font-weight: bold;
+        color: $black;
+      }
+
+      .value {
+        flex-grow: 1;
+        color: $black;
+        margin-left: 4px;
+      }
+    }
   }
 
   .address {
@@ -69,7 +86,7 @@
     border-left: 2px solid $light-gray;
     border-right: 2px solid $light-gray;
     border-bottom: 2px solid $light-gray;
-    padding: 0 15px 15px 0;
+    padding: 10px 15px 15px 0;
 
     .cancle-button {
       margin-left: 10px;

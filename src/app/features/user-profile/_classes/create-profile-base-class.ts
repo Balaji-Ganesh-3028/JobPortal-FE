@@ -284,7 +284,7 @@ export class CreateProfileBaseClass implements OnInit {
       email: 'TlB4H@example.com',
       gender: 'Male',
       salutation: 'Mr.',
-      interests: ['Movie', 'Cooking'],
+      interests: [{ value: 'Movies' }, { value: 'Cooking' }],
     };
 
     const addressList = [

@@ -4,8 +4,14 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span>Job Portal</span>
-  <button [routerLink]="['user-profile/create']" mat-button>
-    Create Profile
-  </button>
+  <a [routerLink]="['user-profile/create']" mat-button>
+    New Profile
+  </a>
+  <a [routerLink]="['user-profile/view']" mat-button>
+    My Account
+  </a>
+  <a [routerLink]="['user-profile/view-all']" mat-button>
+    Browse Profiles
+  </a>
 
 </mat-toolbar>

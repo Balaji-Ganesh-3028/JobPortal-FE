@@ -1,14 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { HttpBaseService } from '../http-base/http-base.service';
-import {
-  catchError,
-  map,
-  Observable,
-  of,
-  shareReplay,
-  tap,
-  throwError,
-} from 'rxjs';
+import { catchError, Observable, shareReplay, throwError } from 'rxjs';
 import { MasterData, MasterList } from '../../_models/master-list';
 import { API_URL_CONSTANTS } from '../../_constants/api-url-constants.constants';
 import { environment } from 'src/environment/environment';

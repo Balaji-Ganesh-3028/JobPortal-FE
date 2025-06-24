@@ -15,9 +15,12 @@ export class HttpBaseService {
    * @param data - The data to be sent in the body of the POST request.
    * @returns An Observable of type T containing the response from the server.
    */
-  public post<T>(url: string, data: T): Observable<T> {
+  public post<TResponse, TRequest>(
+    url: string,
+    data: TRequest
+  ): Observable<TResponse> {
     // Implement the logic to make a POST request
-    return this.http.post<T>(url, data);
+    return this.http.post<TResponse>(url, data);
   }
 
   /**
