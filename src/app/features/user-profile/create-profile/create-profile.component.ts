@@ -13,6 +13,7 @@ import { DropdownService } from 'src/app/core/_services/master-data/dropdown.ser
 import { MasterData } from 'src/app/core/_models/master-list';
 import { SnackbarService } from 'src/app/shared/_services/toast-message/snackbar.service';
 import { MatSpinnerService } from 'src/app/shared/_services/loader/mat-spinner.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-create-profile',
@@ -29,7 +30,8 @@ export class CreateProfileComponent
   private toastService = inject(SnackbarService);
   private loaderService = inject(MatSpinnerService);
 
-  public masterData!: MasterData; // Adjust type as needed
+  public masterData: Observable<MasterData> =
+    this.dropdownService.getDropdownData(); // Adjust type as needed
 
   constructor() {
     super();
@@ -37,25 +39,6 @@ export class CreateProfileComponent
 
   override ngOnInit(): void {
     super.ngOnInit(); //  Ensures base class initialization runs
-    this.loaderService.setLoading(true); // Start loading spinner
-    this.loadMasterData();
-  }
-
-  private loadMasterData(): void {
-    this.dropdownService.getDropdownData().subscribe({
-      next: (data) => {
-        this.masterData = data;
-        setTimeout(() => {
-          this.loaderService.setLoading(false); // Stop loading spinner
-        }, 5000); // Simulate a delay for demonstration purposes
-      },
-      error: (error) => {
-        console.error('Error loading master data:', error);
-        setTimeout(() => {
-          this.loaderService.setLoading(false); // Stop loading spinner
-        }, 5000); // Simulate a delay for demonstration purposes
-      },
-    });
   }
 
   onSave(event: any): void {

@@ -56,7 +56,7 @@
                 <mat-label>{{USER_PROFILE_CONSTANTS.G_STATE_LABEL| titlecase}}</mat-label>
                 <mat-select [formControlName]="EDUCATION_DETAILS_FORMS_KEYS.STATE" id="state">
                   <mat-option *ngFor="let state of this.dropdownData?.state" (click)="onChangeState(state.id)"
-                    value="{{state.name}}">{{state.name}}</mat-option>
+                    value="{{state.value}}">{{state.value}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -68,7 +68,7 @@
                 <mat-label>{{USER_PROFILE_CONSTANTS.G_CITY_LABEL| titlecase}}</mat-label>
                 <mat-select [formControlName]="EDUCATION_DETAILS_FORMS_KEYS.CITY" id="city">
                   <mat-option *ngFor="let city of this.dropdownData?.city"
-                    value="{{city.name}}">{{city.name}}</mat-option>
+                    value="{{city.value}}">{{city.value}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
@@ -93,24 +93,27 @@
   </div>
 </section>
 
-<section *ngIf="!isEditMode && (data$ | async)">
-  <div class="education-details">
-    <div class="row">
-      <div class="col-md-12">
-        <!-- EDUCATION DETAILS HEADING -->
-        <div class="education-details-heading">
-          <div class="heading-label mt-2"><span>{{USER_PROFILE_CONSTANTS.EDUCATION_DETAILS_HEADING |
-              titlecase}}</span>
+<section *ngIf="!isEditMode">
+  <ng-container *ngIf="data$ | async as profilieData">
+    <!-- EDUCATION DETAILS -->
+    <div class="education-details">
+      <div class="row">
+        <div class="col-md-12">
+          <!-- EDUCATION DETAILS HEADING -->
+          <div class="education-details-heading">
+            <div class="heading-label mt-2"><span>{{USER_PROFILE_CONSTANTS.EDUCATION_DETAILS_HEADING |
+                titlecase}}</span>
+            </div>
           </div>
+          <!-- EDUCATION DETAILS HEADING -->
         </div>
-        <!-- EDUCATION DETAILS HEADING -->
-      </div>
 
-      <div class="col-md-12">
-        <app-education-details-list [educationDetailsList]="profilieData.educationDetails"></app-education-details-list>
+        <div class="col-md-12">
+          <app-education-details-list
+            [educationDetailsList]="profilieData.educationDetails"></app-education-details-list>
+        </div>
       </div>
     </div>
-  </div>
-
+  </ng-container>
 </section>
 <!-- EDUCATION DETAILS -->

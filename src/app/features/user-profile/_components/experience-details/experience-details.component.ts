@@ -21,10 +21,9 @@ export class ExperienceDetailsComponent implements OnInit {
   public readonly USER_PROFILE_CONSTANTS = USER_PROFILE_CONSTANTS;
   public readonly FROMS_OPTIONS = FORMS_OPTIONS_CONSTANTS;
   public readonly EXPERIENCE_DETAILS_FORMS_KEYS = EXPERIENCE_DETAILS_FORMS_KEYS;
-  public profilieData!: UserProfileModal;
 
   @Input() public form!: FormGroup;
-  @Input() public data$!: Observable<UserProfileModal | null>; // Observable for user profile data
+  @Input() public data$!: Observable<UserProfileModal>; // Observable for user profile data
   @Input() public isEditMode: boolean = true; // Default to true for edit mode
   @Output() public addExperienceDetails = new EventEmitter<ExperienceDetails>();
 
@@ -32,15 +31,7 @@ export class ExperienceDetailsComponent implements OnInit {
 
   constructor() {}
 
-  ngOnInit(): void {
-    if (!this.isEditMode) {
-      this.data$.subscribe((data) => {
-        if (data) {
-          this.profilieData = data; // Pass adapted UserProfileDetails to UserProfileModal constructor
-        }
-      });
-    }
-  }
+  ngOnInit(): void {}
 
   public addNewExperienceDetails() {
     const newEducationDetails = { ...this.form.value };

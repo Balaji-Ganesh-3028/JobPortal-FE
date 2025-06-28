@@ -3,7 +3,8 @@ import { USER_PROFILE_CONSTANTS } from '../_constants/user-profile-constants.con
 import { UserPorfileService } from '../_services/user-porfile.service';
 import { UserProfileModal } from '../_models/user-profile-modal';
 import { getAdaptors } from '../_helpers/get-adaptors';
-import { catchError, map, Observable, of } from 'rxjs';
+import { catchError, map, Observable, of, shareReplay } from 'rxjs';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-view-profile',
@@ -12,18 +13,26 @@ import { catchError, map, Observable, of } from 'rxjs';
 })
 export class ViewProfileComponent implements OnInit {
   public readonly USER_PROFILE_CONSTANTS = USER_PROFILE_CONSTANTS;
-  public $profileData!: Observable<UserProfileModal | null>; // Initialize with an empty object
-  private userProfileService = inject(UserPorfileService);
+  public $profileData!: Observable<UserProfileModal>;
 
-  constructor() {}
+  constructor(
+    private userProfileService: UserPorfileService,
+    private activatedRoute: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    this.$profileData = this.userProfileService.getUserProfile(11).pipe(
-      map((profile) => new UserProfileModal(getAdaptors(profile))),
-      catchError((error) => {
-        console.error('Error fetching user profile:', error);
-        return of(null); // Return an empty UserProfileModal on error
-      })
-    );
+    // Fetch user profile data for userId from the activated route or a hardcoded value
+    let userId = this.activatedRoute.snapshot.paramMap.get('userId'); // Default to 11 if not found
+
+    this.$profileData = this.userProfileService
+      .getUserProfile(Number(userId))
+      .pipe(
+        map((profile) => new UserProfileModal(getAdaptors(profile))),
+        catchError((error) => {
+          console.error('Error fetching user profile:', error);
+          return of();
+        }),
+        shareReplay({ bufferSize: 1, refCount: true }) // Cache the result for subsequent subscribers and auto-unsubscribe
+      );
   }
 }

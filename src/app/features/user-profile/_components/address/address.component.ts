@@ -24,16 +24,11 @@ export class AddressComponent {
   public readonly ADDRESS_FORMS_KEYS = ADDRESS_FORMS_KEYS;
   public _dropdownData!: MasterData; // Adjust type as needed
   private dropdownService = inject(DropdownService);
-  public profilieData!: UserProfileModal;
 
   @Input() public form!: FormGroup;
   @Input() public data$!: Observable<UserProfileModal | null>; // Observable for user profile data
   @Input() public isEditMode: boolean = true; // Default to true for edit mode
-  @Input() public set dropdownData(data: MasterData) {
-    if (data) {
-      this._dropdownData = data;
-    }
-  } // Adjust type as needed
+  @Input() public dropdownData$!: Observable<MasterData>; // Observable for dropdownData
 
   @Output() public addAddress = new EventEmitter<AddressDetails>();
 
@@ -41,15 +36,7 @@ export class AddressComponent {
 
   constructor() {}
 
-  ngOnInit(): void {
-    if (!this.isEditMode) {
-      this.data$.subscribe((data) => {
-        if (data) {
-          this.profilieData = data || []; // Initialize address list from user profile data
-        }
-      });
-    }
-  }
+  ngOnInit(): void {}
 
   get dropdownData(): MasterData {
     return this._dropdownData;
@@ -70,7 +57,7 @@ export class AddressComponent {
     const selectedCountry = this.form.get(ADDRESS_FORMS_KEYS.COUNTRY)?.value; // Get the selected country ID
 
     const countryId = this._dropdownData.country.find(
-      (country) => country.name === selectedCountry
+      (country) => country.value === selectedCountry
     )?.id; // Get the country ID from the dropdown data
 
     if (!countryId) {

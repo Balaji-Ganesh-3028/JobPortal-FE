@@ -1,7 +1,7 @@
 <!-- DEMOGRAPHIC DETAILS -->
 
 <section *ngIf="isEditMode">
-  <div class="demographic-details">
+  <div class="demographic-details" *ngIf="dropdownData$ | async as dropdownData">
     <div class="row">
       <div class="col-md-12">
 
@@ -24,7 +24,7 @@
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>{{USER_PROFILE_CONSTANTS.SALUTATION_LABEL | titlecase}}</mat-label>
             <mat-select [formControlName]="DEMOGRAPHIC_DETAILS_FORMS_KEYS.SALUTATION" id="salutation">
-              <mat-option *ngFor="let salutation of this.dropdownData?.salutation"
+              <mat-option *ngFor="let salutation of dropdownData?.salutation"
                 value="{{salutation.code}}">{{salutation.code}}</mat-option>
             </mat-select>
             <mat-error
@@ -67,8 +67,8 @@
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>{{USER_PROFILE_CONSTANTS.GENDER_LABEL | titlecase}}</mat-label>
             <mat-select [formControlName]="DEMOGRAPHIC_DETAILS_FORMS_KEYS.GENDER" id="gender">
-              <mat-option *ngFor="let gender of this.dropdownData?.gender"
-                value="{{gender.name}}">{{gender.name}}</mat-option>
+              <mat-option *ngFor="let gender of dropdownData.gender"
+                value="{{gender.value}}">{{gender.value}}</mat-option>
             </mat-select>
             <mat-error
               *ngIf="this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.GENDER)?.hasError('required') && this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.GENDER)?.touched">
@@ -96,8 +96,8 @@
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>{{USER_PROFILE_CONSTANTS.INTERESTS_LABEL | titlecase}}</mat-label>
             <mat-select multiple [formControlName]="DEMOGRAPHIC_DETAILS_FORMS_KEYS.INTERESTS" id="interests">
-              <mat-option *ngFor="let interest of this.dropdownData?.interest"
-                [value]="{value: interest.name}">{{interest.name}}</mat-option>
+              <mat-option *ngFor="let interest of dropdownData.interest"
+                [value]="{value: interest.value}">{{interest.value}}</mat-option>
             </mat-select>
             <mat-error
               *ngIf="this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.INTERESTS)?.hasError('required') && this.form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.INTERESTS)?.touched">
@@ -113,68 +113,70 @@
   </div>
 </section>
 
-<section *ngIf="!isEditMode && (data$ | async)">
+<section *ngIf="!isEditMode">
+  <ng-container *ngIf="data$ | async as profilieData">
+    <div class="demographic-details">
+      <div class="row">
+        <div class="col-md-12">
 
-  <div class="demographic-details">
-    <div class="row">
-      <div class="col-md-12">
-
-        <!-- DEMOGRAPHIC DETAILS HEADING -->
-        <div class="demographic-details-heading">
-          <div class="heading-label mt-2">
-            <span>{{ USER_PROFILE_CONSTANTS.DEMOGRAPHIC_DETAILS_HEADING | titlecase }}</span>
+          <!-- DEMOGRAPHIC DETAILS HEADING -->
+          <div class="demographic-details-heading">
+            <div class="heading-label mt-2">
+              <span>{{ USER_PROFILE_CONSTANTS.DEMOGRAPHIC_DETAILS_HEADING | titlecase }}</span>
+            </div>
           </div>
+          <!-- DEMOGRAPHIC DETAILS HEADING -->
+
+          <div class="row">
+            <div class="col-lg-6 mt-4">
+              <div class="readOnly-field">
+                <span class="label">{{ USER_PROFILE_CONSTANTS.SALUTATION_LABEL | titlecase }}:</span>
+                <span class="value">{{profilieData.demographicDetails.salutation || '-'}}</span>
+              </div>
+            </div>
+
+            <div class="col-lg-6 mt-4">
+              <div class="readOnly-field">
+                <span class="label">{{ USER_PROFILE_CONSTANTS.FIRST_NAME_LABEL | titlecase }}:</span>
+                <span class="value">{{profilieData.demographicDetails.firstName || '-'}}</span>
+              </div>
+            </div>
+
+            <div class="col-lg-6 mt-4">
+              <div class="readOnly-field">
+                <span class="label">{{ USER_PROFILE_CONSTANTS.LAST_NAME_LABEL | titlecase }}:</span>
+                <span class="value">{{profilieData.demographicDetails.lastName || '-'}}</span>
+              </div>
+            </div>
+
+            <div class="col-lg-6 mt-4">
+              <div class="readOnly-field">
+                <span class="label">{{ USER_PROFILE_CONSTANTS.GENDER_LABEL | titlecase }}:</span>
+                <span class="value">{{profilieData.demographicDetails.gender || '-'}}</span>
+              </div>
+            </div>
+
+            <div class="col-lg-6 mt-4">
+              <div class="readOnly-field">
+                <span class="label">{{ USER_PROFILE_CONSTANTS.EMAIL_LABEL | titlecase }}:</span>
+                <span class="value">{{profilieData.demographicDetails.email || '-'}}</span>
+              </div>
+            </div>
+
+            <div class="col-lg-6 mt-4">
+              <div class="readOnly-field">
+                <span class="label">{{ USER_PROFILE_CONSTANTS.INTERESTS_LABEL | titlecase }}:</span>
+                <span class="value">{{ getInterestsDisplay(profilieData.demographicDetails.interests) }}</span>
+              </div>
+            </div>
+
+          </div>
+
         </div>
-        <!-- DEMOGRAPHIC DETAILS HEADING -->
-
-        <div class="row">
-          <div class="col-lg-6 mt-4">
-            <div class="readOnly-field">
-              <span class="label">{{ USER_PROFILE_CONSTANTS.SALUTATION_LABEL | titlecase }}:</span>
-              <span class="value">{{profilieData.demographicDetails.salutation || '-'}}</span>
-            </div>
-          </div>
-
-          <div class="col-lg-6 mt-4">
-            <div class="readOnly-field">
-              <span class="label">{{ USER_PROFILE_CONSTANTS.FIRST_NAME_LABEL | titlecase }}:</span>
-              <span class="value">{{profilieData.demographicDetails.firstName || '-'}}</span>
-            </div>
-          </div>
-
-          <div class="col-lg-6 mt-4">
-            <div class="readOnly-field">
-              <span class="label">{{ USER_PROFILE_CONSTANTS.LAST_NAME_LABEL | titlecase }}:</span>
-              <span class="value">{{profilieData.demographicDetails.lastName || '-'}}</span>
-            </div>
-          </div>
-
-          <div class="col-lg-6 mt-4">
-            <div class="readOnly-field">
-              <span class="label">{{ USER_PROFILE_CONSTANTS.GENDER_LABEL | titlecase }}:</span>
-              <span class="value">{{profilieData.demographicDetails.gender || '-'}}</span>
-            </div>
-          </div>
-
-          <div class="col-lg-6 mt-4">
-            <div class="readOnly-field">
-              <span class="label">{{ USER_PROFILE_CONSTANTS.EMAIL_LABEL | titlecase }}:</span>
-              <span class="value">{{profilieData.demographicDetails.email || '-'}}</span>
-            </div>
-          </div>
-
-          <div class="col-lg-6 mt-4">
-            <div class="readOnly-field">
-              <span class="label">{{ USER_PROFILE_CONSTANTS.INTERESTS_LABEL | titlecase }}:</span>
-              <span class="value">{{ getInterestsDisplay() }}</span>
-            </div>
-          </div>
-
-        </div>
-
       </div>
     </div>
-  </div>
+  </ng-container>
+
 </section>
 
 <!-- DEMOGRAPHIC DETAILS -->

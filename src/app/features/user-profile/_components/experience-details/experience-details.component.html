@@ -74,25 +74,28 @@
   </div>
 </section>
 
-<section *ngIf="!isEditMode && (data$ | async)">
-  <div class="experience-details">
-    <div class="row">
-      <div class="col-lg-12">
-        <!-- EXPERIENCE DETAILS HEADING -->
-        <div class="experience-details-heading">
-          <div class="heading-label mt-2"><span>{{USER_PROFILE_CONSTANTS.EXPERIENCE_DETAILS_HEADING |
-              titlecase}}</span>
+<section *ngIf="!isEditMode">
+  <ng-container *ngIf="data$ | async as profilieData">
+    <!-- EXPERIENCE DETAILS -->
+    <div class="experience-details">
+      <div class="row">
+        <div class="col-lg-12">
+          <!-- EXPERIENCE DETAILS HEADING -->
+          <div class="experience-details-heading">
+            <div class="heading-label mt-2"><span>{{USER_PROFILE_CONSTANTS.EXPERIENCE_DETAILS_HEADING |
+                titlecase}}</span>
+            </div>
           </div>
+          <!-- EXPERIENCE DETAILS HEADING -->
         </div>
-        <!-- EXPERIENCE DETAILS HEADING -->
       </div>
+
+      <!-- EXPERIENCE DETAILS LIST -->
+      <app-experience-details-list
+        [experienceDetailsList]="profilieData.experienceDetails"></app-experience-details-list>
+      <!-- EXPERIENCE DETAILS LIST -->
+
     </div>
-
-    <!-- EXPERIENCE DETAILS LIST -->
-    <app-experience-details-list [experienceDetailsList]="profilieData.experienceDetails"></app-experience-details-list>
-    <!-- EXPERIENCE DETAILS LIST -->
-
-  </div>
-
+  </ng-container>
 </section>
 <!-- EXPERIENCE DETAILS -->

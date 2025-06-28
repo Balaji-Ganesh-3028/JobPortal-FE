@@ -42,4 +42,12 @@ export class UserPorfileService {
       `${environment.apiBaseUrl}${PROFILE_API_URL.GET_ALL_PROFILES}`
     );
   }
+
+  public deleteUserProfile(
+    userId: number
+  ): Observable<UserProfileDetailsResponse> {
+    return this.httpService.delete<UserProfileDetailsResponse>(
+      `${environment.apiBaseUrl}${PROFILE_API_URL.DELETE_PROFILE}${userId}`
+    );
+  }
 }

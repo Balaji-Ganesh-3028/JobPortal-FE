@@ -12,5 +12,5 @@ export interface MasterData {
 export interface MasterList {
   id: number;
   code: string;
-  name: string;
+  value: string;
 }

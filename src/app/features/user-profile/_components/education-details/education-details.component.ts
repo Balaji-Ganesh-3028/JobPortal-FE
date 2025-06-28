@@ -30,31 +30,18 @@ export class EducationDetailsComponent implements OnInit {
   public readonly FROMS_OPTIONS = FORMS_OPTIONS_CONSTANTS;
   public readonly EDUCATION_DETAILS_FORMS_KEYS = EDUCATION_DETAILS_FORMS_KEYS;
   public _dropdownData!: MasterData; // Adjust type as needed
-  public profilieData!: UserProfileModal;
   private dropdownService = inject(DropdownService);
 
   @Input() public form!: FormGroup;
   @Input() public data$!: Observable<UserProfileModal | null>; // Observable for user profile data
   @Input() public isEditMode: boolean = true; // Default to true for edit mode
-  @Input() public set dropdownData(data: MasterData) {
-    if (data) {
-      this._dropdownData = data;
-    }
-  } // Adjust type as needed
+  @Input() public dropdownData$!: Observable<MasterData>;
   @Output() public addEducationDetails = new EventEmitter<EducationDetails>();
 
   public educationDetailsList: EducationDetails[] = [];
 
   ngOnInit(): void {
-    if (!this.isEditMode) {
-      console.log('Edit mode is enabled for Education Details');
-      this.data$.subscribe((data) => {
-        if (data) {
-          console.log('User Profile Data:', data);
-          this.profilieData = data; // Initialize education details list from user profile data
-        }
-      });
-    } else {
+    if (this.isEditMode) {
       this.toGetState(1); // Initialize with a default state ID, e.g., 1
     }
   }
