@@ -31,7 +31,7 @@ export class UserPorfileService {
     );
   }
 
-  public getUserProfile(userId: number): Observable<UserProfileDetails> {
+  public getUserProfile(userId: Number): Observable<UserProfileDetails> {
     return this.httpService.get<UserProfileDetails>(
       `${environment.apiBaseUrl}${PROFILE_API_URL.GET_PROFILE}${userId}`
     );

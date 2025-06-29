@@ -48,4 +48,10 @@ export class DemographicDetailsComponent implements OnInit {
     }
     return '-';
   }
+
+  onChangeInterest(event: any): void {
+    // Handle the change event for interests if needed
+    console.log('Interest changed:', event);
+    // You can also update the form control value here if necessary
+  }
 }

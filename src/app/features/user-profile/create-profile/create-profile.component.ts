@@ -27,8 +27,6 @@ export class CreateProfileComponent
   public readonly USER_PROFILE_CONSTANTS = USER_PROFILE_CONSTANTS;
   private userProfileService = inject(UserPorfileService);
   private dropdownService = inject(DropdownService);
-  private toastService = inject(SnackbarService);
-  private loaderService = inject(MatSpinnerService);
 
   public masterData: Observable<MasterData> =
     this.dropdownService.getDropdownData(); // Adjust type as needed
@@ -43,8 +41,6 @@ export class CreateProfileComponent
 
   onSave(event: any): void {
     if (event === true) {
-      this.loaderService.setLoading(true); // Start loading spinner
-
       const response = new UserProfileModal(
         setAdaptors(this.createProfile.value, [])
       );
@@ -55,17 +51,9 @@ export class CreateProfileComponent
           next: (response) => {
             console.log('User profile created successfully:', response);
             // Handle success response
-
-            setTimeout(() => {
-              this.loaderService.setLoading(false); // Stop loading spinner
-            }, 5000); // Simulate a delay for demonstration purposes
           },
           error: (error) => {
             console.error('Error creating user profile:', error);
-            setTimeout(() => {
-              this.loaderService.setLoading(false); // Stop loading spinner
-            }, 5000); // Simulate a delay for demonstration purposes
-            // Handle error response
           },
           complete: () => {
             // Handle completion (optional)

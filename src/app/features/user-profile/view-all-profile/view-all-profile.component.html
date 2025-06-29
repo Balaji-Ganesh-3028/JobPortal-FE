@@ -39,17 +39,18 @@
                 <td>{{profile.email}}</td>
                 <td>{{profile.gender}}</td>
                 <td>
-                  <button class="btn btn-link p-0 me-2 icon-btn view-btn" title="View"
+                  <a class="btn btn-link p-0 me-2 icon-btn view-btn" title="View"
                     [routerLink]="['/user-profile/view', profile.userId]">
                     <mat-icon fontIcon="visibility" aria-label="View"></mat-icon>
-                  </button>
-                  <button class="btn btn-link p-0 me-2 icon-btn edit-btn" title="Edit">
+                  </a>
+                  <a class="btn btn-link p-0 me-2 icon-btn edit-btn" title="Edit"
+                    [routerLink]="['/user-profile/edit', profile.userId]">
                     <mat-icon fontIcon="edit" aria-label="Edit"></mat-icon>
-                  </button>
-                  <button class="btn btn-link p-0 icon-btn delete-btn" title="Delete"
+                  </a>
+                  <a class="btn btn-link p-0 icon-btn delete-btn" title="Delete"
                     (click)="deleteUserProfile(profile.userId)">
                     <mat-icon fontIcon="delete" aria-label="Delete"></mat-icon>
-                  </button>
+                  </a>
                 </td>
               </tr>
               <!-- End example row -->

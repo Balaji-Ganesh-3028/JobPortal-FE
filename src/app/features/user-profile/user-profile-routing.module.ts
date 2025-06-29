@@ -4,6 +4,7 @@ import { UserProfileComponent } from './user-profile.component';
 import { CreateProfileComponent } from './create-profile/create-profile.component';
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { ViewAllProfileComponent } from './view-all-profile/view-all-profile.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 const routes: Routes = [
   {
     path: '',
@@ -16,8 +17,8 @@ const routes: Routes = [
         title: 'Create Profile',
       },
       {
-        path: 'edit',
-        component: CreateProfileComponent,
+        path: 'edit/:userId',
+        component: EditProfileComponent,
         title: 'Edit Profile',
       },
       { path: 'view', component: ViewProfileComponent, title: 'View Profile' },

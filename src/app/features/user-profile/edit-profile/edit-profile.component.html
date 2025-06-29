@@ -1,0 +1,52 @@
+<!-- CREATE PROFILE -->
+<section class="create-profile">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+
+        <!-- CREATE PROFILE HEADING -->
+        <div class="create-profile-heading">
+          <div class="heading-icon">
+            <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="more_horiz"></mat-icon>
+          </div>
+          <div class="heading-label"><span>{{USER_PROFILE_CONSTANTS.CREATE_PROFILE_HEADING | titlecase}}</span></div>
+        </div>
+        <!-- CREATE PROFILE HEADING -->
+
+        <!-- DEMOGRAPHIC DETAILS -->
+        <app-demographic-details [form]="demogrpahicDetailsForm()"
+          [dropdownData$]="masterData"></app-demographic-details>
+        <!-- DEMOGRAPHIC DETAILS -->
+
+        <!-- EDUCATION DETAILS -->
+        <!-- <app-education-details [form]="educationDetailsForm()"></app-education-details> -->
+        <!-- EDUCATION DETAILS -->
+
+        <!-- EXPERIENCE DETAILS -->
+        <!-- <app-experience-details [form]="experienceDetailsForm()"></app-experience-details> -->
+        <!-- EXPERIENCE DETAILS -->
+
+        <!-- ADDRESS -->
+        <!-- <app-address [form]="addressForm()"></app-address> -->
+        <!-- ADDRESS -->
+
+        <!-- BUTTONS -->
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="buttons mb-4">
+              <div class="save-button">
+                <app-save-button></app-save-button>
+              </div>
+              <div class="cancle-button">
+                <app-cancel-button></app-cancel-button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- BUTTONS -->
+
+      </div>
+    </div>
+  </div>
+</section>
+<!-- CREATE PROFILE -->

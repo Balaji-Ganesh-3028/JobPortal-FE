@@ -19,6 +19,7 @@ import { RequiredFieldDirective } from 'src/app/core/directives/required-field.d
 import { ViewProfileComponent } from './view-profile/view-profile.component';
 import { ViewAllProfileComponent } from './view-all-profile/view-all-profile.component';
 import { EditButtonComponent } from './_components/edit-button/edit-button.component';
+import { EditProfileComponent } from './edit-profile/edit-profile.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { EditButtonComponent } from './_components/edit-button/edit-button.compo
     ViewProfileComponent,
     ViewAllProfileComponent,
     EditButtonComponent,
+    EditProfileComponent,
   ],
   imports: [CommonModule, UserProfileRoutingModule, MaterialModule],
 })
