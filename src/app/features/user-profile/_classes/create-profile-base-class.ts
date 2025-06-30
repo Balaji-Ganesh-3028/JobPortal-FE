@@ -3,6 +3,7 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { EducationDetails } from '../_models/user-profile.models';
 import { minFormArrayLength } from 'src/app/shared/_helpers/to-check-min-formarray-length';
 import { first } from 'rxjs';
+import { UserProfileModal } from '../_models/user-profile-modal';
 
 export const FORMS_KEYS = {
   DEMOGRAPHIC_DETAILS: 'demographicDetailsFrom',
@@ -275,6 +276,42 @@ export class CreateProfileBaseClass implements OnInit {
       addressDetailsForm.patchValue(event); // PATCH VALUE
       this.addressDetailsList.push(addressDetailsForm); // PUSH THE FORM GROUP TO THE FORM ARRAY
     }
+  }
+
+  public patchValue(userProfile: UserProfileModal): void {
+    const { demographicDetails, educationDetails, experienceDetails, address } =
+      userProfile;
+
+    const interests = demographicDetails
+      ? demographicDetails.interests.map((i) => i.value)
+      : [];
+
+    this.createProfile
+      .get(FORMS_KEYS.DEMOGRAPHIC_DETAILS)
+      ?.setValue(demographicDetails);
+
+    this.createProfile.get(FORMS_KEYS.DEMOGRAPHIC_DETAILS)?.patchValue({
+      [DEMOGRAPHIC_DETAILS_FORMS_KEYS.INTERESTS]: interests,
+    });
+
+    educationDetails.map((ed) => {
+      this.onAddEducationDetails(ed);
+    });
+
+    experienceDetails.map((exp) => {
+      this.onAddExperienceDetails(exp);
+    });
+
+    address.map((addr) => {
+      this.onAddAddress(addr);
+    });
+
+    console.log(
+      'form',
+      this.createProfile.value,
+      this.educationDetailsList.value
+    );
+    // this.createProfile.get(FORMS_KEYS.EDUCATION_LIST)?.setValue();
   }
 
   populateForm(): void {

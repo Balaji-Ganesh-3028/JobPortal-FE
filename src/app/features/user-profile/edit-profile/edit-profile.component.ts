@@ -54,46 +54,8 @@ export class EditProfileComponent
 
     this.$userProfileData.subscribe((data) => {
       this.userProfile = new UserProfileModal(getAdaptors(data));
-      const datas: any = [
-        {
-          value: 'Sports',
-        },
-        {
-          value: 'Travel',
-        },
-        {
-          value: 'Technology',
-        },
-      ];
 
-      console.log('User Profile Data:', this.userProfile);
-
-      this.createProfile
-        .get(FORMS_KEYS.DEMOGRAPHIC_DETAILS)
-        ?.setValue(this.userProfile.demographicDetails);
-
-      this.createProfile.get(FORMS_KEYS.DEMOGRAPHIC_DETAILS)?.patchValue({
-        [DEMOGRAPHIC_DETAILS_FORMS_KEYS.INTERESTS]: getInterestsDisplay(
-          this.userProfile.demographicDetails.interests
-        ),
-      });
-
-      console.log(
-        getInterestsDisplay(this.userProfile.demographicDetails.interests)
-      );
-
-      function getInterestsDisplay(interests: { value: string }[]): string[] {
-        if (Array.isArray(interests) && interests.length > 0) {
-          return interests.map((i) => i.value);
-        }
-        return [];
-      }
-
-      console.log(
-        'Form Values after patching:',
-        this.createProfile.value,
-        this.userProfile.demographicDetails
-      );
+      this.patchValue(this.userProfile);
     });
   }
 }

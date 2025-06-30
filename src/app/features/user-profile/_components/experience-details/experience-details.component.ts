@@ -25,13 +25,22 @@ export class ExperienceDetailsComponent implements OnInit {
   @Input() public form!: FormGroup;
   @Input() public data$!: Observable<UserProfileModal>; // Observable for user profile data
   @Input() public isEditMode: boolean = true; // Default to true for edit mode
+  @Input() public isEditExperienceDetails: boolean = false;
+  @Input() public experienceDetailsListData!: ExperienceDetails[]; // Input for education details list data
   @Output() public addExperienceDetails = new EventEmitter<ExperienceDetails>();
 
   public experienceDetailsList: ExperienceDetails[] = [];
 
   constructor() {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    if (
+      this.isEditExperienceDetails &&
+      this.experienceDetailsListData.length > 0
+    ) {
+      this.experienceDetailsList = this.experienceDetailsListData;
+    }
+  }
 
   public addNewExperienceDetails() {
     const newEducationDetails = { ...this.form.value };

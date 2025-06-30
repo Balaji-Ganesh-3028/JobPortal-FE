@@ -93,7 +93,6 @@
 
         <!-- INTERESTS -->
         <div class="col-lg-4 mt-2">
-          {{form.get(DEMOGRAPHIC_DETAILS_FORMS_KEYS.INTERESTS)?.value | json}}
           <mat-form-field class="example-full-width" appearance="outline">
             <mat-label>{{USER_PROFILE_CONSTANTS.INTERESTS_LABEL | titlecase}}</mat-label>
             <mat-select multiple [formControlName]="DEMOGRAPHIC_DETAILS_FORMS_KEYS.INTERESTS" id="interests"

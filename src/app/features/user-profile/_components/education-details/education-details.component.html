@@ -1,6 +1,6 @@
 <!-- EDUCATION DETAILS -->
 <section *ngIf="isEditMode">
-  <div class="education-details">
+  <div class="education-details" *ngIf="dropdownData$ | async as dropdownData">
     <div class="row">
       <div class="col-md-12">
         <!-- EDUCATION DETAILS HEADING -->
@@ -23,7 +23,7 @@
               <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>{{USER_PROFILE_CONSTANTS.CREDENTIAL_LABEL| titlecase}}</mat-label>
                 <mat-select [formControlName]="EDUCATION_DETAILS_FORMS_KEYS.CREDENTIAL" id="credential">
-                  <mat-option *ngFor="let credential of this.dropdownData?.credential"
+                  <mat-option *ngFor="let credential of dropdownData.credential"
                     value="{{credential.code}}">{{credential.code}}</mat-option>
                 </mat-select>
               </mat-form-field>
@@ -55,7 +55,7 @@
               <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>{{USER_PROFILE_CONSTANTS.G_STATE_LABEL| titlecase}}</mat-label>
                 <mat-select [formControlName]="EDUCATION_DETAILS_FORMS_KEYS.STATE" id="state">
-                  <mat-option *ngFor="let state of this.dropdownData?.state" (click)="onChangeState(state.id)"
+                  <mat-option *ngFor="let state of $stateList | async" (click)="onChangeState(state.id)"
                     value="{{state.value}}">{{state.value}}</mat-option>
                 </mat-select>
               </mat-form-field>
@@ -67,8 +67,7 @@
               <mat-form-field class="example-full-width" appearance="outline">
                 <mat-label>{{USER_PROFILE_CONSTANTS.G_CITY_LABEL| titlecase}}</mat-label>
                 <mat-select [formControlName]="EDUCATION_DETAILS_FORMS_KEYS.CITY" id="city">
-                  <mat-option *ngFor="let city of this.dropdownData?.city"
-                    value="{{city.value}}">{{city.value}}</mat-option>
+                  <mat-option *ngFor="let city of $cityList | async" value="{{city.value}}">{{city.value}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>

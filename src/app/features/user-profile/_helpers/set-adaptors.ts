@@ -26,7 +26,7 @@ export function setAdaptors(
     demographicDetails[DEMOGRAPHIC_DETAILS_FORMS_KEYS.INTERESTS];
   const interests = interestData.map((interest: any, index: number) => ({
     interestId: interestId[index] || 0, // Default to 0 if interestId is not provided
-    value: interest.value,
+    value: interest,
   }));
 
   // Convert the demographicDetails object to the desired format

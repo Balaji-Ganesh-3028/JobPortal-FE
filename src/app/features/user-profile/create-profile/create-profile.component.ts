@@ -28,7 +28,7 @@ export class CreateProfileComponent
   private userProfileService = inject(UserPorfileService);
   private dropdownService = inject(DropdownService);
 
-  public masterData: Observable<MasterData> =
+  public $masterData: Observable<MasterData> =
     this.dropdownService.getDropdownData(); // Adjust type as needed
 
   constructor() {

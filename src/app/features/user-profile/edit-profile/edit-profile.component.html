@@ -19,15 +19,20 @@
         <!-- DEMOGRAPHIC DETAILS -->
 
         <!-- EDUCATION DETAILS -->
-        <!-- <app-education-details [form]="educationDetailsForm()"></app-education-details> -->
+        <app-education-details *ngIf="educationDetailsList.value.length > 0" [form]="educationDetailsForm()"
+          [educationDetailsListData]="educationDetailsList.value" [isEditEducationDetails]="true"
+          [dropdownData$]="masterData"></app-education-details>
         <!-- EDUCATION DETAILS -->
 
         <!-- EXPERIENCE DETAILS -->
-        <!-- <app-experience-details [form]="experienceDetailsForm()"></app-experience-details> -->
+        <app-experience-details *ngIf="experienceDetailsList.value.length > 0" [form]="experienceDetailsForm()"
+          [isEditExperienceDetails]="true"
+          [experienceDetailsListData]="experienceDetailsList.value"></app-experience-details>
         <!-- EXPERIENCE DETAILS -->
 
         <!-- ADDRESS -->
-        <!-- <app-address [form]="addressForm()"></app-address> -->
+        <app-address *ngIf="addressDetailsList.value.length > 0" [form]="addressForm()" [isEditAddressDetails]="true"
+          [addressListData]="addressDetailsList.value" [$dropdownData]="masterData"></app-address>
         <!-- ADDRESS -->
 
         <!-- BUTTONS -->

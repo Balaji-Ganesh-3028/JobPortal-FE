@@ -11,13 +11,14 @@ import {
   FORMS_OPTIONS_CONSTANTS,
 } from 'src/app/core/_constants';
 import { USER_PROFILE_CONSTANTS } from '../../_constants/user-profile-constants.constants';
-import { FormArray, FormGroup } from '@angular/forms';
+import { Form, FormArray, FormGroup } from '@angular/forms';
 import { EDUCATION_DETAILS_FORMS_KEYS } from '../../_classes/create-profile-base-class';
 import { EducationDetails } from '../../_models/user-profile.models';
-import { MasterData } from 'src/app/core/_models/master-list';
+import { MasterData, MasterList } from 'src/app/core/_models/master-list';
 import { DropdownService } from 'src/app/core/_services/master-data/dropdown.service';
 import { Observable } from 'rxjs';
 import { UserProfileModal } from '../../_models/user-profile-modal';
+import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-education-details',
@@ -29,12 +30,17 @@ export class EducationDetailsComponent implements OnInit {
   public readonly USER_PROFILE_CONSTANTS = USER_PROFILE_CONSTANTS;
   public readonly FROMS_OPTIONS = FORMS_OPTIONS_CONSTANTS;
   public readonly EDUCATION_DETAILS_FORMS_KEYS = EDUCATION_DETAILS_FORMS_KEYS;
-  public _dropdownData!: MasterData; // Adjust type as needed
+
+  public $stateList!: Observable<MasterList[]>;
+  public $cityList!: Observable<MasterList[]>;
+
   private dropdownService = inject(DropdownService);
 
   @Input() public form!: FormGroup;
+  @Input() public educationDetailsListData!: EducationDetails[]; // Input for education details list data
   @Input() public data$!: Observable<UserProfileModal | null>; // Observable for user profile data
   @Input() public isEditMode: boolean = true; // Default to true for edit mode
+  @Input() public isEditEducationDetails: boolean = false;
   @Input() public dropdownData$!: Observable<MasterData>;
   @Output() public addEducationDetails = new EventEmitter<EducationDetails>();
 
@@ -44,32 +50,21 @@ export class EducationDetailsComponent implements OnInit {
     if (this.isEditMode) {
       this.toGetState(1); // Initialize with a default state ID, e.g., 1
     }
-  }
 
-  get dropdownData(): MasterData {
-    return this._dropdownData;
+    if (
+      this.isEditEducationDetails &&
+      this.educationDetailsListData.length > 0
+    ) {
+      this.educationDetailsList = this.educationDetailsListData;
+    }
   }
 
   public toGetState(countryId: number): void {
-    this.dropdownService.getStates(countryId).subscribe({
-      next: (states) => {
-        this._dropdownData.state = states; // Update states in dropdown data
-      },
-      error: (error) => {
-        console.error('Error fetching states:', error);
-      },
-    });
+    this.$stateList = this.dropdownService.getStates(countryId);
   }
 
   public onChangeState(stateId: number): void {
-    this.dropdownService.getCities(1, stateId).subscribe({
-      next: (cities) => {
-        this._dropdownData.city = cities; // Update cities in dropdown data
-      },
-      error: (error) => {
-        console.error('Error fetching cities:', error);
-      },
-    });
+    this.$cityList = this.dropdownService.getCities(1, stateId);
   }
 
   /**
